@@ -5,6 +5,6 @@ module maven.register {
     requires java.base;
 
     opens maven.register to javafx.fxml;
-    opens maven.model;
+    opens maven.model to javafx.base;
     exports maven.register;
 }

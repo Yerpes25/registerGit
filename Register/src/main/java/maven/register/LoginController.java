@@ -96,11 +96,11 @@ public class LoginController {
                 if (state == 1) {    // Si se ha hecho login se accede a la siguiente scene
                     App.setRoot("MainInventario");
                 } else {
-//                    App.showAlert("Error detectado","Error al iniciar sesión. Datos de acceso incorrectos", Alert.AlertType.NONE);   
+                    App.showAlert("Error detectado","Error al iniciar sesión. Datos de acceso incorrectos", Alert.AlertType.NONE);   
                 }
             }
             else {
-//                App.showAlert("Error detectado","Error al iniciar sesión. Algún campo vacío", Alert.AlertType.NONE);                        
+                App.showAlert("Error detectado","Error al iniciar sesión. Algún campo vacío", Alert.AlertType.NONE);                        
             }   
         } catch (IOException ex) {
 

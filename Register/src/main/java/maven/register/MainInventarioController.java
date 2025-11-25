@@ -77,6 +77,8 @@ public class MainInventarioController implements Initializable {
     private static Producto productoSeleccionado = null;
     private Producto modelCodigo = null;
     private ObservableList<String> olCodigo;
+    @FXML
+    private Button btnNuevo;
 
     /**
      * Initializes the controller class.
