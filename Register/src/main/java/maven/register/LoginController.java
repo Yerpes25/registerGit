@@ -94,7 +94,7 @@ public class LoginController {
                 String pass = jpfPassword.getText();
                 int state = model.login(user, pass);
                 if (state == 1) {    // Si se ha hecho login se accede a la siguiente scene
-                    App.setRoot("welcome");
+                    App.setRoot("MainInventario.fxml");
                 } else {
 //                    App.showAlert("Error detectado","Error al iniciar sesión. Datos de acceso incorrectos", Alert.AlertType.NONE);   
                 }

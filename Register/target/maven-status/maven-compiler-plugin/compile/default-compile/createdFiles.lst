@@ -1,7 +1,12 @@
+maven\model\Ubicacion.class
 maven\model\Conection.class
+maven\model\Producto.class
 maven\register\LoginController.class
 maven\register\MainController.class
 maven\model\User.class
+maven\register\DiagramaController.class
+maven\register\MainInventarioController.class
 module-info.class
 maven\register\App.class
+maven\register\AniaidirProductoController.class
 maven\register\NuevoUsuarioController.class

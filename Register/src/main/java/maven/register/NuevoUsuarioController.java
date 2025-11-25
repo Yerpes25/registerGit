@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import maven.model.User;
 
 /**
@@ -41,33 +42,40 @@ public class NuevoUsuarioController implements Initializable {
     }
 
 
-    public void comprobarTextos(){
+    @FXML
+    public void crearUsuario() {
         String usuario = tfNombre.getText();
-        String email = tfNombre.getText();
-        String pass = tfContrasenia.getPassword();
-        String passConf = new String(txtConfirmar.getPassword());
+        String email = tfCorreo.getText(); 
+        String pass = tfContrasenia.getText(); 
 
-        // Regla de la imagen traducida a Java
         String regexPass = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,15}$";
+        
+        String regexEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
-        // Validaciones
         if (usuario.isEmpty() || email.isEmpty() || pass.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Faltan datos");
-        } 
-        else if (!pass.equals(passConf)) {
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
-        } 
-        else if (!pass.matches(regexPass)) {
-            JOptionPane.showMessageDialog(this, "La contraseña no es segura (8-15 chars, Mayus, Minus, Num, Simbolo)");
-        } 
-        else {
-            // Si todo está bien, llamamos al modelo
-            guardarEnBaseDeDatos(usuario, email, pass);
+            App.showAlert("Faltan datos", "Por favor, rellena todos los campos.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        if (!email.matches(regexEmail)) {
+            App.showAlert("Email inválido", "El formato del correo no es correcto.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        if (!pass.matches(regexPass)) {
+            App.showAlert("Contraseña insegura", 
+                    "La contraseña debe tener:,8 a 15 caracteres.", 
+                    Alert.AlertType.WARNING);
+            return;
+        }
+
+        boolean exito = model.insertarUsuarios(usuario, email, pass);
+        
+        if (exito) {
+            App.showAlert("Éxito", "Usuario creado correctamente.", Alert.AlertType.INFORMATION);
+            // Cerrar la ventana al terminar
+            Stage stage = (Stage) btnCrear.getScene().getWindow();
+            stage.close();
         }
     }
-
-    public void crearUsuario(){
-        comprobarTextos();
-        model.insertarUsuarios(tfNombre.getText(), tfCorreo.getText(), tfContrasenia.getText());
-    }    
 }
