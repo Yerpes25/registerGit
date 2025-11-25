@@ -291,7 +291,7 @@ public class MainInventarioController implements Initializable {
     // Metodo para abrir la escena de añadir nuevo
     @FXML
     private void aniadirNuevo() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AniaidirProducto.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AniaidirProducto.fxml"));
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -313,7 +313,7 @@ public class MainInventarioController implements Initializable {
     public void mostrarDiagrama(ActionEvent event) {
         try {
             actualizarTabla();
-            FXMLLoader fl = new FXMLLoader(getClass().getResource("/view/diagrama.fxml"));
+            FXMLLoader fl = new FXMLLoader(getClass().getResource("diagrama.fxml"));
             Parent root;
 
             root = fl.load();
