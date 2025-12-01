@@ -8,7 +8,8 @@
 
 .icon-boton-borrar > .image-view, 
 .icono-boton-login > .image-view,
-.icon-boton-nuevo > .image-view{
+.icon-boton-nuevo > .image-view,
+.icon-boton-modificar > .image-view{
     -fx-graphic-text-gap: 10;
     -fx-fit-width: 20px;
     -fx-fit-height: 20px;
@@ -20,4 +21,8 @@
 
 .icon-boton-nuevo {
     -fx-graphic: url('../image/nuevo.png');
+}
+
+.icon-boton-modificar {
+    -fx-graphic: url('../image/modificar.png');
 }

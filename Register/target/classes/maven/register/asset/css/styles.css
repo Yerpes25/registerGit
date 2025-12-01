@@ -19,5 +19,9 @@
 }
 
 .icon-boton-nuevo {
-    -fx-graphic: url('../image/borrar1.png');
+    -fx-graphic: url('../image/nuevo.png');
+}
+
+.icon-boton-modificar {
+    -fx-graphic: url('../image/modificar.png');
 }

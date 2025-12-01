@@ -106,8 +106,8 @@
                      </font>
                   </Label>
                   <Button fx:id="btnEliminar" alignment="CENTER_RIGHT" layoutX="46.0" layoutY="320.0" mnemonicParsing="false" onAction="#btnEliminar" prefHeight="37.0" prefWidth="96.0" styleClass="icon-boton-borrar" stylesheets="@asset/css/styles.css" text="Eliminar" textAlignment="RIGHT" />
-                  <Button fx:id="btnNuevo" layoutX="183.0" layoutY="320.0" mnemonicParsing="false" onAction="#aniadirNuevo" prefHeight="37.0" prefWidth="96.0" text="Nuevo" />
-                  <Button fx:id="btnModificar" layoutX="46.0" layoutY="398.0" mnemonicParsing="false" onAction="#btnModificar" prefHeight="37.0" prefWidth="96.0" text="Modificar" />
+                  <Button fx:id="btnNuevo" layoutX="183.0" layoutY="320.0" mnemonicParsing="false" onAction="#aniadirNuevo" prefHeight="37.0" prefWidth="96.0" styleClass="icon-boton-nuevo" stylesheets="@asset/css/styles.css" text="Nuevo" />
+                  <Button fx:id="btnModificar" layoutX="46.0" layoutY="398.0" mnemonicParsing="false" onAction="#btnModificar" prefHeight="37.0" prefWidth="96.0" styleClass="icon-boton-modificar" stylesheets="@asset/css/styles.css" text="Modificar" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@asset/image/Logo.png" />
