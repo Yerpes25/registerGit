@@ -11,3 +11,8 @@
     -fx-graphic: url('../image/borrar.png');
     -fx-graphic-text-gap: 10;
 }
+
+.icon-boton-borrar > .image-view {
+    -fx-fit-width: 20px;
+    -fx-fit-height: 20px;
+}

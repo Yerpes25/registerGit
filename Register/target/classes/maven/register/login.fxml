@@ -61,7 +61,7 @@
          <children>
             <ImageView fx:id="jivLogo" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@asset/image/ProfExion.png" />
+                  <Image url="@asset/image/Logo.png" />
                </image>
             </ImageView>
          </children></VBox>
