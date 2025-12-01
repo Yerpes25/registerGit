@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -359,4 +360,15 @@ public class MainInventarioController implements Initializable {
         return true;
     }
 
+    public void menuActualizar(ActionEvent event){
+        actualizarTabla();
+    }
+    
+    public void menuCargarDatos(ActionEvent event){
+        ol = model.cargarDatos();
+    }
+    
+    public void menuSalir(ActionEvent event){
+        Platform.exit();
+    }
 }

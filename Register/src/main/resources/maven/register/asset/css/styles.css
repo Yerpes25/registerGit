@@ -4,6 +4,7 @@
 
 .icono-boton-login {
     -fx-graphic: url('../image/login.png');
+    -fx-graphic-text-gap: 10;
 }
 
 .icon-boton-borrar > .image-view, 

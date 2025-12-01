@@ -4,24 +4,28 @@
 
 .icono-boton-login {
     -fx-graphic: url('../image/login.png');
+    -fx-graphic-text-gap: 10;
 }
 
 .icon-boton-borrar > .image-view, 
 .icono-boton-login > .image-view,
-.icon-boton-nuevo > .image-view{
-    -fx-graphic-text-gap: 10;
+.icon-boton-nuevo > .image-view,
+.icon-boton-modificar > .image-view{
     -fx-fit-width: 20px;
     -fx-fit-height: 20px;
 }
 
 .icon-boton-borrar {
     -fx-graphic: url('../image/borrar1.png');
+    -fx-graphic-text-gap: 10;
 }
 
 .icon-boton-nuevo {
     -fx-graphic: url('../image/nuevo.png');
+    -fx-graphic-text-gap: 10;
 }
 
 .icon-boton-modificar {
     -fx-graphic: url('../image/modificar.png');
+    -fx-graphic-text-gap: 10;
 }

@@ -5,7 +5,7 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="store.DiagramaController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.register.DiagramaController">
    <children>
       <BarChart fx:id="tablaGrafico" layoutX="66.0" layoutY="14.0" prefHeight="371.0" prefWidth="482.0">
         <xAxis>
