@@ -90,7 +90,7 @@ public class MainInventarioController implements Initializable {
 //        miUbicacion.getSelectionModel().selectedItemProperty().addListener(cl);
         // Esta es la parte de añadir un icono en java, lo que hacemos es crear un objeto de tipo image llamado icono,
         // conseguimos la ruta de donde esta la imagen para el icono
-        Image icono = new Image(getClass().getResourceAsStream("/image/diagrama.png"));
+        Image icono = new Image(getClass().getResourceAsStream("/maven/register/asset/image/diagrama.png"));
 
         // Creamos una imageView para meter un icono y le damos el ancho y el alto
         ImageView imagen = new ImageView(icono);

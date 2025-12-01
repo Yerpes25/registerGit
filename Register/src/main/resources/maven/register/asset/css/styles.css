@@ -3,6 +3,13 @@
 }
 
 .icono-boton-login {
-    -fx-graphic: url('../image/login.png');
+    -fx-graphic: url('/image/login.png');
     -fx-graphic-text-gap: 10; /* Espacio entre el icono y el texto */
+}
+
+.icon-boton-borrar {
+    -fx-background-image: url('/image/borrar.png');
+    -fx-background-size: 30px 30px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
 }
