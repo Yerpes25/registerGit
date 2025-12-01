@@ -32,7 +32,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#menuCargarDatos" text="Cargar datos" />
                         <MenuItem mnemonicParsing="false" text="Gráfico" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Cerrar sesion" />
+                        <MenuItem fx:id="mCerrarSesion" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesion" />
                         <MenuItem fx:id="mSalir" mnemonicParsing="false" onAction="#menuSalir" text="Salir" />
                   </items>
                 </Menu>

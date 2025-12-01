@@ -18,7 +18,8 @@ import maven.register.App;
  * @author CAMBIAR POR VUESTRO NOMBRE
  */
 public class User {
-
+    private static String usuarioActual;
+    
     public int login(String user, String password) {
 
         Connection connection = null;   // Conexión a la Base de datos (modeloCOnectorDB)
@@ -89,4 +90,20 @@ public class User {
         // TODO
         return 0;
     }
+
+    /**
+     * @return the usuarioActual
+     */
+    public static String getUsuarioActual() {
+        return usuarioActual;
+    }
+
+    /**
+     * @param aUsuarioActual the usuarioActual to set
+     */
+    public static void setUsuarioActual(String aUsuarioActual) {
+        usuarioActual = aUsuarioActual;
+    }
+    
+    public User(){}
 }

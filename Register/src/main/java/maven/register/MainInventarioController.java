@@ -23,6 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -32,6 +33,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import maven.model.Ubicacion;
+import maven.model.User;
 
 /**
  * FXML Controller class
@@ -74,12 +76,20 @@ public class MainInventarioController implements Initializable {
     private ObservableList<Producto> ol = observableArrayList();
     private ObservableList<Ubicacion> olUbi = observableArrayList();
     private Producto model = null;
+    private User model1 = null;
     private Ubicacion modelUbi = null;
     private static Producto productoSeleccionado = null;
     private Producto modelCodigo = null;
     private ObservableList<String> olCodigo;
+    
     @FXML
     private Button btnNuevo;
+    @FXML
+    private MenuItem mActualizar;
+    @FXML
+    private MenuItem mCerrarSesion;
+    @FXML
+    private MenuItem mSalir;
 
     /**
      * Initializes the controller class.
@@ -100,6 +110,7 @@ public class MainInventarioController implements Initializable {
         miDiagrama.setGraphic(imagen);
 
         // Creamos un objeto llamado model y lo inicializamos
+        model1 = new User();
         model = new Producto();
         modelCodigo = new Producto();
 
@@ -123,6 +134,11 @@ public class MainInventarioController implements Initializable {
         // Cargamos a olCodigo los codigos de todos los productos
         olCodigo = modelCodigo.cargarCodigoProductos();
 
+        if(mCerrarSesion != null){
+            String nombre = model1.getUsuarioActual();
+            mCerrarSesion.setText("Cerrar Sesion  (" + nombre + ")");
+        }
+        
         // Actualizamos la tabla
         actualizarTabla();
 
@@ -360,15 +376,27 @@ public class MainInventarioController implements Initializable {
         return true;
     }
 
+    @FXML
     public void menuActualizar(ActionEvent event){
         actualizarTabla();
     }
     
+    @FXML
     public void menuCargarDatos(ActionEvent event){
         ol = model.cargarDatos();
     }
     
+    @FXML
     public void menuSalir(ActionEvent event){
         Platform.exit();
+    }
+    
+    @FXML
+    private void cerrarSesion(ActionEvent event) {
+        try {
+            App.setRoot("login"); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
