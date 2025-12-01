@@ -17,7 +17,7 @@ public class Conection {
     private static final String DB = "register1";
     private static final String URL = "jdbc:mysql://localhost:3306/" + DB + "?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=Europe/Madrid";
     private static final String USER = "root"; // o tu usuario
-    private static final String PASSWORD = ""; // pon tu contraseña
+    private static final String PASSWORD = "1234"; // pon tu contraseña
 
     public static Connection getConnection() throws SQLException {
         Connection connect;
