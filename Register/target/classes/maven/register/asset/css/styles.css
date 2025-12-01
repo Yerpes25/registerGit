@@ -4,15 +4,20 @@
 
 .icono-boton-login {
     -fx-graphic: url('../image/login.png');
-    -fx-graphic-text-gap: 10; /* Espacio entre el icono y el texto */
+}
+
+.icon-boton-borrar > .image-view, 
+.icono-boton-login > .image-view,
+.icon-boton-nuevo > .image-view{
+    -fx-graphic-text-gap: 10;
+    -fx-fit-width: 20px;
+    -fx-fit-height: 20px;
 }
 
 .icon-boton-borrar {
-    -fx-graphic: url('../image/borrar.png');
-    -fx-graphic-text-gap: 10;
+    -fx-graphic: url('../image/borrar1.png');
 }
 
-.icon-boton-borrar > .image-view {
-    -fx-fit-width: 20px;
-    -fx-fit-height: 20px;
+.icon-boton-nuevo {
+    -fx-graphic: url('../image/borrar1.png');
 }
