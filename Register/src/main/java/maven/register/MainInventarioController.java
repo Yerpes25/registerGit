@@ -392,6 +392,11 @@ public class MainInventarioController implements Initializable {
     }
     
     @FXML
+    public void menuGrafico(ActionEvent event){
+        mostrarDiagrama(event);
+    }
+    
+    @FXML
     private void cerrarSesion(ActionEvent event) {
         try {
             App.setRoot("login"); 
