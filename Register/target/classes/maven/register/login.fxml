@@ -50,10 +50,13 @@
                   <Insets left="10.0" right="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnRegistrar" mnemonicParsing="false" onAction="#registerAction" onKeyPressed="#registrarKeyPressed" prefHeight="29.0" prefWidth="378.0" text="Registrar">
+            <Button fx:id="btnRegistrar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerAction" onKeyPressed="#registrarKeyPressed" styleClass="icono-boton-registrar" stylesheets="@asset/css/styles.css" text="Registrar" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets left="10.0" right="10.0" top="20.0" />
                </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
             </Button>
          </children>
       </VBox>

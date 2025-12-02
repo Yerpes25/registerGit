@@ -1,4 +1,10 @@
-.button {
+.button:hover{
+    -fx-font-weight: bold;
+    -fx-background-color: #5a5a5a;
+    -fx-text-fill: white;
+}
+
+.nocturno{
     -fx-font-weight: bold;
 }
 
@@ -28,4 +34,26 @@
 .icon-boton-modificar {
     -fx-graphic: url('../image/modificar.png');
     -fx-graphic-text-gap: 10;
+}
+
+.icono-boton-registrar{
+    -fx-graphic: url('../image/agregar.png');
+    -fx-graphic-text-gap: 10;
+}
+
+.text-field:hover, .password-field:hover {
+    -fx-background-color: #4a4a4a;
+    -fx-border-color: #999999;
+    -fx-text-fill: #000000;
+}
+.text-field:focused, .password-field:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #000000;
+    -fx-border-width: 3px;
+}
+
+.text-field, .password-field{
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill: white;
+    -fx-text-fill: #000000;
 }
