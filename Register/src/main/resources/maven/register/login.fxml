@@ -5,15 +5,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.register.LoginController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="850.0" stylesheets="@asset/css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.register.LoginController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FFF;" HBox.hgrow="ALWAYS">
+      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FFF;" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
          <children>
             <Label fx:id="jlTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="91.0" prefWidth="206.0" text="Inicia Sesión" textAlignment="CENTER">
                <font>
@@ -39,7 +38,7 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
             </VBox>
-            <Button fx:id="jbLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginAction" onKeyPressed="#loginKeyPressed" styleClass="icono-boton-login" stylesheets="@asset/css/styles.css" text="Entrar" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="jbLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginAction" onKeyPressed="#loginKeyPressed" styleClass="icono-boton-login" stylesheets="@styles.css" text="Entrar" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
@@ -50,7 +49,7 @@
                   <Insets left="10.0" right="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnRegistrar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerAction" onKeyPressed="#registrarKeyPressed" styleClass="icono-boton-registrar" stylesheets="@asset/css/styles.css" text="Registrar" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="btnRegistrar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerAction" onKeyPressed="#registrarKeyPressed" styleClass="icono-boton-registrar" stylesheets="@styles.css" text="Registrar" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" top="20.0" />
                </VBox.margin>
@@ -60,13 +59,9 @@
             </Button>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="452.0" style="-fx-background-color: #30373e;" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="452.0" style="-fx-background-color: #30373e;" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
          <children>
-            <ImageView fx:id="jivLogo" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@asset/image/Logo.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="jivLogo" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" styleClass="imageLogo" />
          </children></VBox>
    </children>
 </HBox>

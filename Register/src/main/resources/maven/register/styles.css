@@ -1,0 +1,80 @@
+.nocturno{
+    -fx-font-weight: bold;
+}
+
+.icono-boton-login {
+    -fx-graphic: url('asset/image/login.png');
+    -fx-graphic-text-gap: 10;
+}
+
+.icon-boton-borrar > .image-view, 
+.icono-boton-login > .image-view,
+.icon-boton-nuevo > .image-view,
+.icon-boton-modificar > .image-view{
+    -fx-fit-width: 20px;
+    -fx-fit-height: 20px;
+}
+
+.icon-boton-borrar {
+    -fx-graphic: url('asset/image/borrar1.png');
+    -fx-graphic-text-gap: 10;
+}
+
+.icon-boton-nuevo {
+    -fx-graphic: url('asset/image/nuevo.png');
+    -fx-graphic-text-gap: 10;
+}
+
+.icon-boton-modificar {
+    -fx-graphic: url('asset/image/modificar.png');
+    -fx-graphic-text-gap: 10;
+}
+
+.icono-boton-registrar{
+    -fx-graphic: url('asset/image/agregar.png');
+    -fx-graphic-text-gap: 10;
+}
+
+.imageLogo {
+    /* 1. Cargamos la imagen como fondo */
+    -fx-background-image: url('asset/image/Logo.png'); /* Ajusta la ruta si es necesario */
+    
+    /* 2. Hacemos que la imagen se ajuste al tamaño del contenedor */
+    -fx-background-size: cover; /* o 'contain' o 'stretch' según prefieras */
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+
+    /* 3. APLICAMOS EL RADIO (Aquí está la magia) */
+    -fx-background-radius: 30; /* Puedes poner un número (px) o 50% para hacerlo redondo total */
+    
+    /* Opcional: Si quieres un borde alrededor */
+    -fx-border-color: white;
+    -fx-border-radius: 30;
+    -fx-border-width: 2px;
+}
+
+.text-field:hover, .password-field:hover { 
+    -fx-border-color: #999999;
+    -fx-text-fill: #000000;
+}
+.text-field:focused, .password-field:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-text-fill: #000000;
+}
+
+.text-field, .password-field{
+    -fx-background-color: #F2F2F2;
+    -fx-text-fill: #000000;
+}
+
+.button:hover{
+    -fx-font-weight: bold;
+    -fx-background-color: #CFCFCF;
+    -fx-text-fill: #000000;
+}
+
+.button{
+    -fx-font-weight: bold;
+}
