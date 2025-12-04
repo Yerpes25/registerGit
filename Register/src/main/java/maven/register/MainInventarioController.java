@@ -30,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import maven.model.Ubicacion;
@@ -90,6 +91,9 @@ public class MainInventarioController implements Initializable {
     private MenuItem mCerrarSesion;
     @FXML
     private MenuItem mSalir;
+    @FXML
+    private AnchorPane anchorPane;
+    private double tamanoLetraActual = 13.0;
 
     /**
      * Initializes the controller class.
@@ -404,4 +408,39 @@ public class MainInventarioController implements Initializable {
             e.printStackTrace();
         }
     }
+    
+    @FXML
+    private void modoOscuro(ActionEvent event) {
+        if (!anchorPane.getStyleClass().contains("oscuro")) {
+            anchorPane.getStyleClass().add("oscuro");
+        }
+    }
+    
+    @FXML
+    private void modoClaro(ActionEvent event) {
+        // Simplemente quita la clase 'oscuro'
+        anchorPane.getStyleClass().remove("oscuro");
+    }
+
+    @FXML
+    private void aumentarFuente(ActionEvent event) {
+        if (tamanoLetraActual < 24) {
+            tamanoLetraActual += 1;
+            actualizarTamanoFuente();
+        }
+    }
+
+    @FXML
+    private void disminuirFuente(ActionEvent event) {
+        if (tamanoLetraActual > 10) { 
+            tamanoLetraActual -= 1;
+            actualizarTamanoFuente();
+        }
+    }
+
+    private void actualizarTamanoFuente() {
+        String estiloActual = anchorPane.getStyle();
+        anchorPane.setStyle(estiloActual + "; -fx-font-size: " + tamanoLetraActual + "px;");
+    }
 }
+

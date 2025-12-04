@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -13,6 +14,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,9 +23,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="850.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.register.MainInventarioController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="501.0" prefWidth="850.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.register.MainInventarioController">
    <children>
-      <VBox prefHeight="500.0" prefWidth="850.0">
+      <VBox prefHeight="540.0" prefWidth="850.0">
          <children>
             <MenuBar>
               <menus>
@@ -45,48 +47,55 @@
                         <MenuItem fx:id="mSalir" mnemonicParsing="false" onAction="#menuSalir" text="Salir" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Ayuda">
+                <Menu id="menuAyuda" mnemonicParsing="false" text="Ayuda">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Documentación" />
                         <MenuItem mnemonicParsing="false" text="Configuración" />
                         <Menu mnemonicParsing="false" text="Vista">
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Modo nocturno" />
-                            <MenuItem mnemonicParsing="false" text="Modo claro" />
+                              <MenuItem mnemonicParsing="false" onAction="#modoOscuro" text="Modo nocturno" />
+                            <MenuItem mnemonicParsing="false" onAction="#modoClaro" text="Modo claro" />
                           </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Fuente">
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Aumentar fuente" />
-                              <MenuItem mnemonicParsing="false" text="Disminuir fuente" />
-                              <MenuItem mnemonicParsing="false" text="Seleccionar fuente" />
+                              <MenuItem mnemonicParsing="false" onAction="#aumentarFuente" text="Aumentar fuente" />
+                              <MenuItem mnemonicParsing="false" onAction="#disminuirFuente" text="Disminuir fuente" />
+                              <MenuItem mnemonicParsing="false" text="Seleccionar fuente">
+                                 <graphic>
+                                    <ChoiceBox prefWidth="150.0" />
+                                 </graphic>
+                              </MenuItem>
                           </items>
                         </Menu>
                   </items>
                 </Menu>
               </menus>
+               <tooltip>
+                  <Tooltip text="acceso" />
+               </tooltip>
             </MenuBar>
             <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="43.0" prefWidth="850.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                <AnchorPane id="parteArribaSplit" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                <AnchorPane id="parteAbajoSplit" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
               </items>
             </SplitPane>
-            <HBox prefHeight="500.0" prefWidth="850.0">
+            <HBox prefHeight="900.0" prefWidth="850.0">
                <children>
-                  <Pane id="panelFondoIzquierda" prefHeight="500.0" prefWidth="730.0" style="-fx-background-color: #FFFFFF;">
+                  <Pane id="panelFondoIzquierda" prefHeight="550.0" prefWidth="730.0" style="-fx-background-color: #FFFFFF;">
                      <children>
-                        <TableView fx:id="tableModel" onMouseClicked="#seleccionar" prefHeight="240.0" prefWidth="548.0">
+                        <TableView fx:id="tableModel" layoutY="2.0" onMouseClicked="#seleccionar" prefHeight="238.0" prefWidth="548.0">
                           <columns>
                             <TableColumn fx:id="codProducto" prefWidth="81.5999755859375" text="CODIGO" />
                             <TableColumn fx:id="descProducto" prefWidth="165.60004425048828" text="DESCRIPCION" />
                             <TableColumn fx:id="cantProducto" prefWidth="135.199951171875" text="CANTIDAD" />
-                              <TableColumn fx:id="ubiProducto" prefWidth="165.59994506835938" text="Ubicacion" />
+                              <TableColumn fx:id="ubiProducto" prefWidth="163.99996948242188" text="Ubicacion" />
                           </columns>
                         </TableView>
-                        <HBox layoutY="240.0" prefHeight="264.0" prefWidth="548.0">
+                        <HBox fx:id="camposTexto" layoutY="240.0" prefHeight="264.0" prefWidth="548.0">
                            <children>
-                              <VBox prefHeight="264.0" prefWidth="158.0" style="-fx-region-border: Right;">
+                              <VBox prefHeight="264.0" prefWidth="158.0" styleClass="vboxDerechaTextos">
                                  <children>
                                     <Label prefHeight="25.0" prefWidth="70.0" text="Codigo:">
                                        <font>
@@ -122,10 +131,10 @@
                                     </Label>
                                  </children>
                                  <HBox.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </VBox>
-                              <VBox prefHeight="232.0" prefWidth="389.0">
+                              <VBox prefHeight="264.0" prefWidth="394.0" styleClass="vboxIzquierdaTextos">
                                  <children>
                                     <TextField fx:id="miCodigo">
                                        <VBox.margin>
@@ -153,22 +162,22 @@
                         </HBox>
                      </children>
                   </Pane>
-                  <Pane prefHeight="500.0" prefWidth="484.0" style="-fx-background-color: #003F86;">
+                  <Pane id="panel-derecha" prefHeight="506.0" prefWidth="489.0" styleClass="panel-derecha">
                      <children>
-                        <Label layoutX="46.0" layoutY="208.0" prefHeight="112.0" prefWidth="212.0" text="CONTENIDO DE PRODUCTOS" textAlignment="CENTER" textFill="WHITE">
+                        <Label id="contenidoPane" layoutX="46.0" layoutY="208.0" prefHeight="112.0" prefWidth="212.0" styleClass="contenidoPane" text="CONTENIDO DE PRODUCTOS" textAlignment="CENTER" textFill="#fffbfb">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnEliminar" alignment="CENTER_RIGHT" layoutX="46.0" layoutY="320.0" mnemonicParsing="false" onAction="#btnEliminar" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-borrar" text="Eliminar" textAlignment="RIGHT" />
-                        <Button fx:id="btnNuevo" layoutX="183.0" layoutY="320.0" mnemonicParsing="false" onAction="#aniadirNuevo" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-nuevo" text="Nuevo" />
-                        <Button fx:id="btnModificar" layoutX="46.0" layoutY="398.0" mnemonicParsing="false" onAction="#btnModificar" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-modificar" text="Modificar" />
+                        <Button fx:id="btnEliminar" alignment="CENTER_RIGHT" layoutX="46.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnEliminar" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-borrar" text="Eliminar" textAlignment="RIGHT" />
+                        <Button fx:id="btnNuevo" layoutX="180.0" layoutY="327.0" mnemonicParsing="false" onAction="#aniadirNuevo" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-nuevo" text="Nuevo" />
+                        <Button fx:id="btnModificar" layoutX="46.0" layoutY="407.0" mnemonicParsing="false" onAction="#btnModificar" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-modificar" text="Modificar" />
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@asset/image/Logo.png" />
+                              <Image url="@asset/image/Logo1.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="miDiagrama" layoutX="199.0" layoutY="390.0" mnemonicParsing="false" onAction="#mostrarDiagrama" prefHeight="54.0" prefWidth="63.0" />
+                        <Button fx:id="miDiagrama" layoutX="199.0" layoutY="398.0" mnemonicParsing="false" onAction="#mostrarDiagrama" prefHeight="54.0" prefWidth="63.0" />
                      </children>
                   </Pane>
                </children>

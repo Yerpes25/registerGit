@@ -5,12 +5,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="850.0" stylesheets="@asset/css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.register.LoginController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="850.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.register.LoginController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #FFF;" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
          <children>
@@ -61,7 +62,10 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="500.0" prefWidth="452.0" style="-fx-background-color: #30373e;" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
          <children>
-            <ImageView fx:id="jivLogo" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" styleClass="imageLogo" />
+            <ImageView fx:id="jivLogo" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@asset/image/Logo.png" />
+               </image></ImageView>
          </children></VBox>
    </children>
 </HBox>

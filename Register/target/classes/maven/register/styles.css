@@ -1,18 +1,6 @@
-.nocturno{
-    -fx-font-weight: bold;
-}
-
 .icono-boton-login {
     -fx-graphic: url('asset/image/login.png');
     -fx-graphic-text-gap: 10;
-}
-
-.icon-boton-borrar > .image-view, 
-.icono-boton-login > .image-view,
-.icon-boton-nuevo > .image-view,
-.icon-boton-modificar > .image-view{
-    -fx-fit-width: 20px;
-    -fx-fit-height: 20px;
 }
 
 .icon-boton-borrar {
@@ -35,23 +23,6 @@
     -fx-graphic-text-gap: 10;
 }
 
-.imageLogo {
-    /* 1. Cargamos la imagen como fondo */
-    -fx-background-image: url('asset/image/Logo.png'); /* Ajusta la ruta si es necesario */
-    
-    /* 2. Hacemos que la imagen se ajuste al tamaño del contenedor */
-    -fx-background-size: cover; /* o 'contain' o 'stretch' según prefieras */
-    -fx-background-position: center center;
-    -fx-background-repeat: no-repeat;
-
-    /* 3. APLICAMOS EL RADIO (Aquí está la magia) */
-    -fx-background-radius: 30; /* Puedes poner un número (px) o 50% para hacerlo redondo total */
-    
-    /* Opcional: Si quieres un borde alrededor */
-    -fx-border-color: white;
-    -fx-border-radius: 30;
-    -fx-border-width: 2px;
-}
 
 .text-field:hover, .password-field:hover { 
     -fx-border-color: #999999;
@@ -77,4 +48,70 @@
 
 .button{
     -fx-font-weight: bold;
+}
+
+.vboxDerechaTextos{
+    -fx-padding: 20 0 0 10;
+}
+
+.vboxIzquierdaTextos{
+    -fx-padding: 20 0 0 0;
+}
+
+.panel-derecha{
+    -fx-background-color:  #003F86;
+}
+
+.contenidoPane{
+    -fx-background-color: #003F86;
+}
+
+.oscuro .vboxIzquierdaTextos,
+.oscuro .vboxDerechaTextos .label,
+.oscuro .vboxDerechaTextos,
+.oscuro .table-view,
+.oscuro .table-view .table-cell{
+    -fx-background-color: #3D3D3D;
+    -fx-text-fill: white;
+}
+
+.oscuro .vboxIzquierdaTextos .text-field,
+.oscuro .vboxIzquierdaTextos .combo-box,
+.oscuro .combo-box .list-cell,
+.oscuro .table-view .scroll-bar:horizontal,
+.oscuro .table-view .scroll-bar:vertical{
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+    -fx-border-color: #979595;
+    -fx-border-width: 1px;
+}
+
+.oscuro .table-view .column-header, .oscuro .table-view .column-header .label{
+    -fx-border-color: white; 
+    -fx-border-width: 0 1px 1px 0;
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+}
+
+.oscuro .table-view .scroll-bar .thumb, .oscuro .split-pane > .split-pane-divider{
+    -fx-background-color: #575454;
+}
+
+.oscuro .table-view .corner {
+    -fx-background-color: #575454;
+}
+
+
+.oscuro .menu-bar, .oscuro .split-pane, .oscuro .menu-bar .menu .label{
+    -fx-background-color: #3D3D3D;
+    -fx-text-fill: white;
+}
+
+.oscuro .panel-derecha, .oscuro .contenidoPane{
+    -fx-background-color: gray;
+}
+
+.oscuro .menu .menuAyuda{
+    -fx-background-color: white;
+    -fx-text-fill: #000000;
 }
