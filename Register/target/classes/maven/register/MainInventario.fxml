@@ -13,6 +13,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -29,11 +30,11 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Aplicacion">
                   <items>
-                    <MenuItem fx:id="mActualizar" mnemonicParsing="false" onAction="#menuActualizar" text="Refrescar datos" />
-                        <MenuItem mnemonicParsing="false" onAction="#menuCargarDatos" text="Cargar datos" />
+                    <MenuItem fx:id="mActualizar" onAction="#menuActualizar" text="Refrescar datos" />
+                        <MenuItem fx:id="mCargarDatos" mnemonicParsing="false" onAction="#menuCargarDatos" text="Cargar datos" />
                         <Menu mnemonicParsing="false" onAction="#menuGrafico" text="Gráfico">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Colores">
+                            <MenuItem fx:id="mColorGrafico" mnemonicParsing="false" text="Colores">
                                  <graphic>
                                     <ColorPicker />
                                  </graphic>
@@ -51,15 +52,15 @@
                         <MenuItem mnemonicParsing="false" text="Configuración" />
                         <Menu mnemonicParsing="false" text="Vista">
                           <items>
-                              <MenuItem mnemonicParsing="false" onAction="#modoOscuro" text="Modo nocturno" />
-                            <MenuItem mnemonicParsing="false" onAction="#modoClaro" text="Modo claro" />
+                              <MenuItem fx:id="mNopturno" mnemonicParsing="false" onAction="#modoOscuro" text="Modo nocturno" />
+                            <MenuItem fx:id="mClaro" mnemonicParsing="false" onAction="#modoClaro" text="Modo claro" />
                           </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Fuente">
                           <items>
-                              <MenuItem mnemonicParsing="false" onAction="#aumentarFuente" text="Aumentar fuente" />
-                              <MenuItem mnemonicParsing="false" onAction="#disminuirFuente" text="Disminuir fuente" />
-                              <MenuItem mnemonicParsing="false" text="Seleccionar fuente" />
+                              <MenuItem fx:id="mAumentar" mnemonicParsing="false" onAction="#aumentarFuente" text="Aumentar fuente" />
+                              <MenuItem fx:id="mDisminuir" mnemonicParsing="false" onAction="#disminuirFuente" text="Disminuir fuente" />
+                              <Menu fx:id="menuItem" mnemonicParsing="false" text="Seleccionar fuente" />
                           </items>
                         </Menu>
                   </items>
@@ -83,6 +84,9 @@
                             <TableColumn fx:id="cantProducto" prefWidth="135.199951171875" text="CANTIDAD" />
                               <TableColumn fx:id="ubiProducto" prefWidth="163.99996948242188" text="Ubicacion" />
                           </columns>
+                           <tooltip>
+                              <Tooltip text="Selecciona un producto" />
+                           </tooltip>
                         </TableView>
                         <HBox fx:id="camposTexto" layoutY="240.0" prefHeight="264.0" prefWidth="548.0">
                            <children>
@@ -131,21 +135,33 @@
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
+                                       <tooltip>
+                                          <Tooltip text="Pon el codigo del producto" />
+                                       </tooltip>
                                     </TextField>
                                     <TextField fx:id="miDescripcion">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
+                                       <tooltip>
+                                          <Tooltip text="Pon la descripción del producto" />
+                                       </tooltip>
                                     </TextField>
                                     <TextField fx:id="miCantidad">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
+                                       <tooltip>
+                                          <Tooltip text="Pon la cantidad del producto" />
+                                       </tooltip>
                                     </TextField>
                                     <ComboBox fx:id="miUbicacion" prefHeight="25.0" prefWidth="389.0">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
+                                       <tooltip>
+                                          <Tooltip text="Selecciona la ubicación del producto" />
+                                       </tooltip>
                                     </ComboBox>
                                  </children>
                               </VBox>
@@ -160,15 +176,27 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnEliminar" alignment="CENTER_RIGHT" layoutX="46.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnEliminar" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-borrar" text="Eliminar" textAlignment="RIGHT" />
-                        <Button fx:id="btnNuevo" layoutX="180.0" layoutY="327.0" mnemonicParsing="false" onAction="#aniadirNuevo" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-nuevo" text="Nuevo" />
-                        <Button fx:id="btnModificar" layoutX="46.0" layoutY="407.0" mnemonicParsing="false" onAction="#btnModificar" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-modificar" text="Modificar" />
+                        <Button fx:id="btnEliminar" alignment="CENTER_RIGHT" layoutX="46.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnEliminar" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-borrar" text="Eliminar" textAlignment="RIGHT">
+                           <tooltip>
+                              <Tooltip text="Elimina un producto" />
+                           </tooltip></Button>
+                        <Button fx:id="btnNuevo" layoutX="180.0" layoutY="327.0" mnemonicParsing="false" onAction="#aniadirNuevo" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-nuevo" text="Nuevo">
+                           <tooltip>
+                              <Tooltip text="Crea un nuevo producto" />
+                           </tooltip></Button>
+                        <Button fx:id="btnModificar" layoutX="46.0" layoutY="407.0" mnemonicParsing="false" onAction="#btnModificar" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-modificar" text="Modificar">
+                           <tooltip>
+                              <Tooltip text="Modifica un producto" />
+                           </tooltip></Button>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@asset/image/Logo1.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="miDiagrama" layoutX="199.0" layoutY="398.0" mnemonicParsing="false" onAction="#mostrarDiagrama" prefHeight="54.0" prefWidth="63.0" />
+                        <Button fx:id="miDiagrama" layoutX="199.0" layoutY="398.0" mnemonicParsing="false" onAction="#mostrarDiagrama" prefHeight="54.0" prefWidth="63.0">
+                           <tooltip>
+                              <Tooltip text="Mostrar un diagrama" />
+                           </tooltip></Button>
                      </children>
                   </Pane>
                </children>

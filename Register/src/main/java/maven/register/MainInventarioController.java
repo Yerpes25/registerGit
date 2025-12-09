@@ -7,6 +7,7 @@ package maven.register;
 import java.io.IOException;
 import maven.model.Producto;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,7 +33,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import maven.model.Ubicacion;
@@ -82,7 +89,8 @@ public class MainInventarioController implements Initializable {
     private static Producto productoSeleccionado = null;
     private Producto modelCodigo = null;
     private ObservableList<String> olCodigo;
-    
+    private List<String> fuentes;
+
     @FXML
     private Button btnNuevo;
     @FXML
@@ -94,6 +102,24 @@ public class MainInventarioController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
     private double tamanoLetraActual = 13.0;
+    @FXML
+    private Menu menuItem;
+    @FXML
+    private HBox camposTexto;
+    @FXML
+    private MenuItem mCargarDatos;
+    @FXML
+    private MenuItem mNopturno;
+    @FXML
+    private MenuItem mClaro;
+    @FXML
+    private MenuItem mAumentar;
+    @FXML
+    private MenuItem mDisminuir;
+    @FXML
+    private MenuItem mColorGrafico;
+    @FXML
+    private ColorPicker colores;
 
     /**
      * Initializes the controller class.
@@ -101,6 +127,27 @@ public class MainInventarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
+        mActualizar.setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
+        mCerrarSesion.setAccelerator(KeyCombination.keyCombination("Ctrl+L"));
+        mSalir.setAccelerator(KeyCombination.keyCombination("Ctrl+Q"));
+        mCargarDatos.setAccelerator(KeyCombination.keyCombination("Ctrl+F"));
+        mNopturno.setAccelerator(KeyCombination.keyCombination("Ctrl+O"));
+        mClaro.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
+        mAumentar.setAccelerator(KeyCombination.keyCombination("Ctrl+T"));
+        mDisminuir.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
+        menuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));
+        mColorGrafico.setAccelerator(KeyCombination.keyCombination("Ctrl+W"));
+
+        fuentes = Font.getFamilies();
+
+        for (String fuente : fuentes) {
+            MenuItem item = new MenuItem(fuente);
+            item.setOnAction(e -> {
+                anchorPane.setStyle("-fx-font-family: '" + fuente + "';");
+            });
+            menuItem.getItems().add(item);
+        }
 
 //        miUbicacion.getSelectionModel().selectedItemProperty().addListener(cl);
         // Esta es la parte de añadir un icono en java, lo que hacemos es crear un objeto de tipo image llamado icono,
@@ -138,11 +185,11 @@ public class MainInventarioController implements Initializable {
         // Cargamos a olCodigo los codigos de todos los productos
         olCodigo = modelCodigo.cargarCodigoProductos();
 
-        if(mCerrarSesion != null){
+        if (mCerrarSesion != null) {
             String nombre = model1.getUsuarioActual();
             mCerrarSesion.setText("Cerrar Sesion  (" + nombre + ")");
         }
-        
+
         // Actualizamos la tabla
         actualizarTabla();
 
@@ -202,7 +249,7 @@ public class MainInventarioController implements Initializable {
                 alert.showAndWait();
                 return;
             }
-            
+
             //Validamos que cantidad sea positivo
             if (nuevoCantidad <= 0) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "La cantidad debe ser un número positivo mayor que cero.");
@@ -218,10 +265,10 @@ public class MainInventarioController implements Initializable {
                 alert.showAndWait();
                 return;
             }
-            
+
             //Guardamos la ubicacion en nuevaUbicacion
             String nuevoUbicacion = ubicacionActual.getCodigo();
-            
+
             //Validamos que la descripcion no este vacia
             String nuevoDescripcion = miDescripcion.getText().trim();
             if (nuevoCodigo.isEmpty() || nuevoDescripcion.isEmpty()) {
@@ -364,7 +411,7 @@ public class MainInventarioController implements Initializable {
         productoSeleccionado = null;
 
     }
-    
+
     // Metodo para comprobar el codigo del producto si es igual o no al antiguo
     private boolean comprobarCodigo(String nuevoCodigo) {
         String codigoAntiguo = productoSeleccionado.getCodigo();
@@ -381,41 +428,41 @@ public class MainInventarioController implements Initializable {
     }
 
     @FXML
-    public void menuActualizar(ActionEvent event){
+    public void menuActualizar(ActionEvent event) {
         actualizarTabla();
     }
-    
+
     @FXML
-    public void menuCargarDatos(ActionEvent event){
+    public void menuCargarDatos(ActionEvent event) {
         ol = model.cargarDatos();
     }
-    
+
     @FXML
-    public void menuSalir(ActionEvent event){
+    public void menuSalir(ActionEvent event) {
         Platform.exit();
     }
-    
+
     @FXML
-    public void menuGrafico(ActionEvent event){
+    public void menuGrafico(ActionEvent event) {
         mostrarDiagrama(event);
     }
-    
+
     @FXML
     private void cerrarSesion(ActionEvent event) {
         try {
-            App.setRoot("login"); 
+            App.setRoot("login");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     private void modoOscuro(ActionEvent event) {
         if (!anchorPane.getStyleClass().contains("oscuro")) {
             anchorPane.getStyleClass().add("oscuro");
         }
     }
-    
+
     @FXML
     private void modoClaro(ActionEvent event) {
         // Simplemente quita la clase 'oscuro'
@@ -432,7 +479,7 @@ public class MainInventarioController implements Initializable {
 
     @FXML
     private void disminuirFuente(ActionEvent event) {
-        if (tamanoLetraActual > 10) { 
+        if (tamanoLetraActual > 10) {
             tamanoLetraActual -= 1;
             actualizarTamanoFuente();
         }
@@ -442,5 +489,18 @@ public class MainInventarioController implements Initializable {
         String estiloActual = anchorPane.getStyle();
         anchorPane.setStyle(estiloActual + "; -fx-font-size: " + tamanoLetraActual + "px;");
     }
-}
 
+    private void cambiarColor() {
+        Color color = colores.getValue();
+        
+        String rgb = String.format("rgb(%d, %d, %d)",
+        (int)(color.getRed() * 255),
+        (int)(color.getGreen() * 255),
+        (int)(color.getBlue() * 255));
+
+        String css =
+        ".default-color0.chart-bar {\n" +
+        "    -fx-bar-fill: " + rgb + ";\n" +
+        "}";
+    }
+}
