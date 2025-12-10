@@ -54,7 +54,7 @@
                      <children>
                         <Pane fx:id="panelLoginIzquierdaInicioSesion" prefHeight="154.0" prefWidth="399.0">
                            <children>
-                              <Label fx:id="jlInicio" alignment="CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="-6.0" prefHeight="134.0" prefWidth="405.0" styleClass="fondoLogin" text="Inicia Sesión" textAlignment="CENTER">
+                              <Label fx:id="jlInicio" alignment="CENTER" contentDisplay="CENTER" layoutX="-4.0" layoutY="1.0" prefHeight="127.0" prefWidth="405.0" styleClass="fondoLogin" text="Inicia Sesión" textAlignment="CENTER">
                                  <font>
                                     <Font name="AppleGothic Regular" size="24.0" />
                                  </font>
