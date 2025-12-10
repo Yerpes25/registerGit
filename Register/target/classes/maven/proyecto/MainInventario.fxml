@@ -53,7 +53,7 @@
                               <Menu fx:id="menuItem1" mnemonicParsing="false" text="Seleccionar fuente" />
                           </items>
                         </Menu>
-                        <CheckMenuItem fx:id="mSonido" mnemonicParsing="false" text="Activar sonido" />
+                        <CheckMenuItem fx:id="mSonido" mnemonicParsing="false" onAction="#reproducirSonido" text="Activar sonido" />
                   </items>
                 </Menu>
               </menus>

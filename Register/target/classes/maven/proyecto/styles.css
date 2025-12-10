@@ -66,6 +66,8 @@
     -fx-background-color: #003F86;
 }
 
+
+
 .oscuro .vboxIzquierdaTextos,
 .oscuro .vboxDerechaTextos .label,
 .oscuro .vboxDerechaTextos,
@@ -86,7 +88,7 @@
     -fx-border-width: 1px;
 }
 
-.oscuro .table-view .column-header, .oscuro .table-view .column-header .label{
+.oscuro .table-view .column-header{
     -fx-border-color: white; 
     -fx-border-width: 0 1px 1px 0;
     -fx-background-color: #333333;
@@ -102,7 +104,7 @@
 }
 
 
-.oscuro .menu-bar, .oscuro .split-pane, .oscuro .menu-bar .menu .label{
+.oscuro .menu-bar, .oscuro .split-pane{
     -fx-background-color: #3D3D3D;
     -fx-text-fill: white;
 }
@@ -116,6 +118,82 @@
     -fx-text-fill: #000000;
 }
 
-.default-color0.chart-bar {
-    -fx-bar-fill: rgb(123,50,240);
+.oscuro .menu-item .label {
+    -fx-text-fill: black;
+    -fx-background-color: transparent;
+}
+
+.oscuro .menu-item:focused{
+    -fx-background-color: #dddddd;
+}
+
+.oscuro .menu-item .label:hover {
+    -fx-background-color: #dddddd;
+    -fx-text-fill: white;
+}
+
+/*Parte del login*/
+.panelLoginIzquierdaInicioSesion, .PanelDebajoBotones, .panelLoginIzquierdaCampos{
+    -fx-background-color: white;
+}
+
+.panel-derecha{
+    -fx-background-color: #003F86;
+}
+
+.fondoLogin{
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+}
+
+/*Nopturno de login*/
+.oscuro .panelLoginIzquierdaInicioSesion, 
+.oscuro .PanelDebajoBotones, 
+.oscuro .panelLoginIzquierdaCampos {
+    -fx-background-color: #2b2b2b;
+}
+
+.oscuro .panel-derecha {
+    -fx-background-color: #979595;
+    -fx-border-color: #444444; 
+    -fx-border-width: 0 0 0 1px;
+}
+
+.oscuro .fondoLogin, .oscuro .label{
+    -fx-background-color: #2b2b2b;
+    -fx-text-fill: white;
+}
+
+.oscuro .panelLoginIzquierdaInicioSesion .label,
+.oscuro .panelLoginIzquierdaCampos .label {
+    -fx-text-fill: white; 
+}
+
+.oscuro .text-field, 
+.oscuro .password-field {
+    -fx-background-color: #404040; 
+    -fx-text-fill: white; 
+    -fx-border-color: #555555;    
+}
+
+.oscuro .text-field:focused, 
+.oscuro .password-field:focused {
+    -fx-border-color: white;   
+    -fx-background-color: #505050;
+}
+
+.oscuro .button:hover {
+    -fx-background-color: #555555; 
+}
+
+.oscuro .text-field:hover, 
+.oscuro .password-field:hover {
+    -fx-background-color: #4a4a4a;
+    -fx-border-color: #999999;
+    -fx-text-fill: white;
+}
+
+.oscuro .menu-item:hover,
+.oscuro .check-menu-item:hover {
+    -fx-background-color: #444444;
 }

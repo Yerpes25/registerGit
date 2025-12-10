@@ -43,6 +43,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import maven.model.Ubicacion;
 import maven.model.User;
+import maven.util.GestorEstilos;
 
 /**
  * FXML Controller class
@@ -91,7 +92,6 @@ public class MainInventarioController implements Initializable {
     private Producto modelCodigo = null;
     private ObservableList<String> olCodigo;
     private List<String> fuentes;
-    private String familiaFuenteActual = "System";
 
     @FXML
     private Button btnNuevo;
@@ -103,7 +103,6 @@ public class MainInventarioController implements Initializable {
     private MenuItem mSalir;
     @FXML
     private AnchorPane anchorPane;
-    private double tamanoLetraActual = 13.0;
     @FXML
     private MenuItem mCargarDatos;
     @FXML
@@ -143,10 +142,13 @@ public class MainInventarioController implements Initializable {
         for (String fuente : fuentes) {
             MenuItem item = new MenuItem(fuente);
             item.setOnAction(e -> {
-                familiaFuenteActual = fuente;
-                anchorPane.setStyle("-fx-font-family: '" + familiaFuenteActual + "'; -fx-font-size: " + tamanoLetraActual + "px;");
+                GestorEstilos.setFuente(fuente, anchorPane);
             });
             menuItem1.getItems().add(item);
+        }
+
+        if (mSonido != null) {
+            mSonido.setSelected(maven.model.Configuracion.sonidoActivo);
         }
 
 //        miUbicacion.getSelectionModel().selectedItemProperty().addListener(cl);
@@ -190,6 +192,7 @@ public class MainInventarioController implements Initializable {
             mCerrarSesion.setText("Cerrar Sesion  (" + nombre + ")");
         }
 
+        GestorEstilos.cargarEstilos(anchorPane);
         // Actualizamos la tabla
         actualizarTabla();
 
@@ -234,7 +237,7 @@ public class MainInventarioController implements Initializable {
 
             //Validamos que se haya cogido Ubicacion
             if (ubicacionActual == null) {
-                reproducirSonido("error");
+                GestorEstilos.reproducir("error");
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Debes seleccionar una ubicación.");
                 alert.showAndWait();
                 return;
@@ -246,7 +249,7 @@ public class MainInventarioController implements Initializable {
             try {
                 cantidadCom = Integer.parseInt(miCantidad.getText());
             } catch (NumberFormatException e) {
-                reproducirSonido("error");
+                GestorEstilos.reproducir("error");
                 Alert alert = new Alert(Alert.AlertType.WARNING, "La cantidad debe ser un número válido.");
                 alert.showAndWait();
                 return;
@@ -254,7 +257,7 @@ public class MainInventarioController implements Initializable {
 
             //Validamos que cantidad sea positivo
             if (nuevoCantidad <= 0) {
-                reproducirSonido("error");
+                GestorEstilos.reproducir("error");
                 Alert alert = new Alert(Alert.AlertType.WARNING, "La cantidad debe ser un número positivo mayor que cero.");
                 alert.showAndWait();
                 return;
@@ -264,7 +267,7 @@ public class MainInventarioController implements Initializable {
             String expre = "^[A-Z][0-9]{2}$";
             String nuevoCodigo = miCodigo.getText().trim();
             if (!comprobarCodigo(nuevoCodigo) || !nuevoCodigo.matches(expre)) {
-                reproducirSonido("error");
+                GestorEstilos.reproducir("error");
                 Alert alert = new Alert(Alert.AlertType.WARNING, "El código esta mal o es igual que otro");
                 alert.showAndWait();
                 return;
@@ -276,7 +279,7 @@ public class MainInventarioController implements Initializable {
             //Validamos que la descripcion no este vacia
             String nuevoDescripcion = miDescripcion.getText().trim();
             if (nuevoCodigo.isEmpty() || nuevoDescripcion.isEmpty()) {
-                reproducirSonido("error");
+                GestorEstilos.reproducir("error");
                 Alert alert = new Alert(Alert.AlertType.WARNING, "El código y la descripción no pueden estar vacíos.");
                 alert.showAndWait();
                 return;
@@ -287,7 +290,7 @@ public class MainInventarioController implements Initializable {
                     && nuevoDescripcion.equals(productoSeleccionado.getDescripcion())
                     && nuevoCantidad == productoSeleccionado.getCantidad()
                     && nuevoUbicacion.equals(productoSeleccionado.getUbicacion())) {
-                reproducirSonido("error");
+                GestorEstilos.reproducir("error");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Modifica algo");
                 alert.showAndWait();
 
@@ -305,18 +308,18 @@ public class MainInventarioController implements Initializable {
 
                 if (actualizado) {
                     actualizarTabla();
-                    reproducirSonido("exito");
+                    GestorEstilos.reproducir("exito");
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Producto actualizado correctamente");
                     alert.showAndWait();
                 } else {
-                    reproducirSonido("error");
+                    GestorEstilos.reproducir("error");
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Error al actualizar producto");
                     alert.showAndWait();
                 }
             }
 
         } else {
-            reproducirSonido("error");
+            GestorEstilos.reproducir("error");
             Alert alert = new Alert(Alert.AlertType.WARNING, "No has modificado nada");
             alert.showAndWait();
         }
@@ -348,21 +351,22 @@ public class MainInventarioController implements Initializable {
 
                 if (eliminado) {
                     actualizarTabla();
-                    reproducirSonido("exito");
+                    GestorEstilos.reproducir("exito");
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Producto eliminado correctamente");
                     alert.showAndWait();
                 } else {
-                    reproducirSonido("error");
+                    GestorEstilos.reproducir("error");
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Error al eliminar producto");
                     alert.showAndWait();
                 }
             } else {
-                reproducirSonido("exito");
+                GestorEstilos.reproducir("exito");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Producto cancelado correctamente");
                 alert.showAndWait();
                 actualizarTabla();
             }
         } else {
+            GestorEstilos.reproducir("error");
             Alert alert = new Alert(Alert.AlertType.WARNING, "Selecciona un producto antes de modificar");
             alert.showAndWait();
         }
@@ -384,7 +388,7 @@ public class MainInventarioController implements Initializable {
 
             actualizarTabla();
         } catch (IOException ex) {
-            reproducirSonido("error");
+            GestorEstilos.reproducir("error");
             Logger.getLogger(MainInventarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -406,7 +410,7 @@ public class MainInventarioController implements Initializable {
             stage.setScene(sc);
             stage.showAndWait();
         } catch (IOException ex) {
-            reproducirSonido("error");
+            GestorEstilos.reproducir("error");
             Logger.getLogger(MainInventarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -469,68 +473,28 @@ public class MainInventarioController implements Initializable {
 
     @FXML
     private void modoOscuro(ActionEvent event) {
-        if (!anchorPane.getStyleClass().contains("oscuro")) {
-            anchorPane.getStyleClass().add("oscuro");
-        }
+        GestorEstilos.setModoOscuro(true, anchorPane);
     }
 
     @FXML
     private void modoClaro(ActionEvent event) {
-        // Simplemente quita la clase 'oscuro'
-        anchorPane.getStyleClass().remove("oscuro");
+        GestorEstilos.setModoOscuro(false, anchorPane);
     }
 
     @FXML
     private void aumentarFuente(ActionEvent event) {
-        if (tamanoLetraActual < 24) {
-            tamanoLetraActual += 1;
-            actualizarTamanoFuente();
-        }
+        GestorEstilos.aumentarFuente(anchorPane);
     }
 
     @FXML
     private void disminuirFuente(ActionEvent event) {
-        if (tamanoLetraActual > 10) {
-            tamanoLetraActual -= 1;
-            actualizarTamanoFuente();
-        }
+        GestorEstilos.disminuirFuente(anchorPane);
     }
 
-    private void actualizarTamanoFuente() {
-        String estiloActual = anchorPane.getStyle();
-        anchorPane.setStyle("-fx-font-family: '" + familiaFuenteActual + "'; -fx-font-size: " + tamanoLetraActual + "px;");
-    }
-
-    private void reproducirSonido(String tipo) {
-        // Verificamos si la opción está activada en el menu
-        if (mSonido == null || !mSonido.isSelected()) {
-            return;
-        }
-
-        try {
-            String archivo = "";
-
-            // Elegimos el archivo según el tipo
-            if (tipo.equals("exito")) {
-                archivo = "exito.mp3";
-            } else if (tipo.equals("error")) {
-                archivo = "error.mp3";
-            }
-
-            URL recurso = getClass().getResource("/maven/proyecto/asset/sound/" + archivo);
-
-            if (recurso != null) {
-                Media media = new Media(recurso.toExternalForm());
-                MediaPlayer player = new MediaPlayer(media);
-
-                player.play();
-            } else {
-                System.out.println("No se encuentra el archivo de sonido: " + archivo);
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error al reproducir audio: " + e.getMessage());
-            e.printStackTrace();
+    @FXML
+    private void reproducirSonido(ActionEvent event) {
+        if (mSonido != null) {
+            maven.model.Configuracion.sonidoActivo = mSonido.isSelected();
         }
     }
 }

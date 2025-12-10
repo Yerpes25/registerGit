@@ -6,9 +6,10 @@ package maven.proyecto;
 
 /**
  *
- * @author PON TU NOMBRE
+ * @author Yerpes
  */
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -23,10 +24,19 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import maven.model.User;
+import maven.util.GestorEstilos;
 
 //import java.net.URL;
 //import javafx.scene.image.Image;
@@ -39,8 +49,6 @@ public class LoginController {
     @FXML
     private PasswordField jpfPassword;
     @FXML
-    private Label jlTitle;
-    @FXML
     private Label jlUser;
     @FXML
     private Label jlPassword;
@@ -48,46 +56,88 @@ public class LoginController {
     private Button jbLogin;
     @FXML
     private ImageView jivLogo;
-    
-    
+
+    private List<String> fuentes;
+    @FXML
+    private CheckMenuItem mSonido;
+    @FXML
+    private Button btnRegistrar;
+    @FXML
+    private MenuItem mlNopturno;
+    @FXML
+    private MenuItem mlClaro;
+    @FXML
+    private MenuItem mlDim;
+    @FXML
+    private MenuItem mlAum;
+    @FXML
+    private MenuItem mlSalir;
+    @FXML
+    private AnchorPane vboxPane;
+    @FXML
+    private Menu mlSelect;
+    @FXML
+    private Pane panelLoginIzquierdaCampos;
+    @FXML
+    private Pane panelLoginIzquierdaInicioSesion;
+    @FXML
+    private Pane PanelDebajoBotones;
+    @FXML
+    private Label jlInicio;
+    @FXML
+    private Pane panelImagen;
+
     public void initialize() {
-       
+        fuentes = Font.getFamilies();
+
+        for (String fuente : fuentes) {
+            MenuItem item = new MenuItem(fuente);
+            item.setOnAction(e -> {
+                GestorEstilos.setFuente(fuente, vboxPane);
+            });
+            mlSelect.getItems().add(item);
+        }
+
+        if (mSonido != null) {
+            mSonido.setSelected(maven.model.Configuracion.sonidoActivo);
+        }
+        
+        GestorEstilos.cargarEstilos(vboxPane);
     }
-    
+
     @FXML
     private void loginAction(ActionEvent event) {
         Object evt = event.getSource();
-         if (evt.equals(jbLogin)) {
+        if (evt.equals(jbLogin)) {
             login();
-         }
+        }
     }
 
-    
     @FXML
     private void loginKeyPressed(KeyEvent event) {
         System.out.println("He pulsado ENTER");
-        if(event.getCode().equals(KeyCode.ENTER)) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
             login();
         }
     }
-    
+
     @FXML
     private void registerAction(ActionEvent event) throws IOException {
         Object evt = event.getSource();
-            register();
-         
+        register();
+
     }
-    
+
     @FXML
-    private void registrarKeyPressed(KeyEvent event) throws IOException{
-        if(event.getCode().equals(KeyCode.ENTER)) {
+    private void registrarKeyPressed(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
             register();
         }
     }
-    
+
     /* Método para acceso a la aplicación mediante verificación de usuario */
-    private void login(){
-        
+    private void login() {
+
         try {
             if (!jtfUser.getText().isEmpty() && !jpfPassword.getText().isEmpty()) {
                 String user = jtfUser.getText();
@@ -97,28 +147,54 @@ public class LoginController {
                     model.setUsuarioActual(user);
                     App.setRoot("MainInventario");
                 } else {
-                    App.showAlert("Error detectado","Error al iniciar sesión. Datos de acceso incorrectos", Alert.AlertType.NONE);   
+                    GestorEstilos.reproducir("error");
+                    App.showAlert("Error detectado", "Error al iniciar sesión. Datos de acceso incorrectos", Alert.AlertType.NONE);
                 }
+            } else {
+                GestorEstilos.reproducir("error");
+                App.showAlert("Error detectado", "Error al iniciar sesión. Algún campo vacío", Alert.AlertType.NONE);
             }
-            else {
-                App.showAlert("Error detectado","Error al iniciar sesión. Algún campo vacío", Alert.AlertType.NONE);                        
-            }   
         } catch (IOException ex) {
 
         }
     }
-    
+
     private void register() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("nuevoUsuario.fxml"));
-   
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Añadir nuevo Usuario");
-            stage.setScene(scene);
-            stage.showAndWait();
+
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Añadir nuevo Usuario");
+        stage.setScene(scene);
+        stage.showAndWait();
     }
-   
-    
+
+    @FXML
+    private void modoOscuro(ActionEvent event) {
+        GestorEstilos.setModoOscuro(true, vboxPane);
+    }
+
+    @FXML
+    private void modoClaro(ActionEvent event) {
+        GestorEstilos.setModoOscuro(false, vboxPane);
+    }
+
+    @FXML
+    private void aumentarFuente(ActionEvent event) {
+        GestorEstilos.aumentarFuente(vboxPane);
+    }
+
+    @FXML
+    private void disminuirFuente(ActionEvent event) {
+        GestorEstilos.disminuirFuente(vboxPane);
+    }
+
+    @FXML
+    private void menuSonido(ActionEvent event) {
+        if (mSonido != null) {
+            maven.model.Configuracion.sonidoActivo = mSonido.isSelected();
+        }
+    }
 }

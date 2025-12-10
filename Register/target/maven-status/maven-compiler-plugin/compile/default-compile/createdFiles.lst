@@ -1,11 +1,12 @@
 maven\proyecto\NuevoUsuarioController.class
 maven\model\Conection.class
 maven\model\Producto.class
-maven\proyecto\MainController.class
 module-info.class
+maven\model\Configuracion.class
 maven\proyecto\MainInventarioController.class
 maven\proyecto\DiagramaController.class
 maven\model\Ubicacion.class
+maven\util\GestorEstilos.class
 maven\proyecto\LoginController.class
 maven\model\User.class
 maven\proyecto\App.class
