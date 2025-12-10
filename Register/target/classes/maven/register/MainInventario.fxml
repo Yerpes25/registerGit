@@ -36,7 +36,7 @@
                           <items>
                             <MenuItem fx:id="mColorGrafico" mnemonicParsing="false" text="Colores">
                                  <graphic>
-                                    <ColorPicker />
+                                    <ColorPicker fx:id="colores" />
                                  </graphic>
                               </MenuItem>
                           </items>
