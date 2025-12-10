@@ -1,4 +1,4 @@
-package maven.register;
+package maven.proyecto;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

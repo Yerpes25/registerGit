@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
-import maven.register.MainInventarioController;
+import maven.proyecto.MainInventarioController;
 
 /**
  *

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package maven.register;
+package maven.proyecto;
 
 import java.io.IOException;
 import maven.model.Producto;
@@ -152,7 +152,7 @@ public class MainInventarioController implements Initializable {
 //        miUbicacion.getSelectionModel().selectedItemProperty().addListener(cl);
         // Esta es la parte de añadir un icono en java, lo que hacemos es crear un objeto de tipo image llamado icono,
         // conseguimos la ruta de donde esta la imagen para el icono
-        Image icono = new Image(getClass().getResourceAsStream("/maven/register/asset/image/diagrama.png"));
+        Image icono = new Image(getClass().getResourceAsStream("/maven/proyecto/asset/image/diagrama.png"));
 
         // Creamos una imageView para meter un icono y le damos el ancho y el alto
         ImageView imagen = new ImageView(icono);
@@ -234,6 +234,7 @@ public class MainInventarioController implements Initializable {
 
             //Validamos que se haya cogido Ubicacion
             if (ubicacionActual == null) {
+                reproducirSonido("error");
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Debes seleccionar una ubicación.");
                 alert.showAndWait();
                 return;
@@ -245,6 +246,7 @@ public class MainInventarioController implements Initializable {
             try {
                 cantidadCom = Integer.parseInt(miCantidad.getText());
             } catch (NumberFormatException e) {
+                reproducirSonido("error");
                 Alert alert = new Alert(Alert.AlertType.WARNING, "La cantidad debe ser un número válido.");
                 alert.showAndWait();
                 return;
@@ -252,6 +254,7 @@ public class MainInventarioController implements Initializable {
 
             //Validamos que cantidad sea positivo
             if (nuevoCantidad <= 0) {
+                reproducirSonido("error");
                 Alert alert = new Alert(Alert.AlertType.WARNING, "La cantidad debe ser un número positivo mayor que cero.");
                 alert.showAndWait();
                 return;
@@ -261,6 +264,7 @@ public class MainInventarioController implements Initializable {
             String expre = "^[A-Z][0-9]{2}$";
             String nuevoCodigo = miCodigo.getText().trim();
             if (!comprobarCodigo(nuevoCodigo) || !nuevoCodigo.matches(expre)) {
+                reproducirSonido("error");
                 Alert alert = new Alert(Alert.AlertType.WARNING, "El código esta mal o es igual que otro");
                 alert.showAndWait();
                 return;
@@ -272,6 +276,7 @@ public class MainInventarioController implements Initializable {
             //Validamos que la descripcion no este vacia
             String nuevoDescripcion = miDescripcion.getText().trim();
             if (nuevoCodigo.isEmpty() || nuevoDescripcion.isEmpty()) {
+                reproducirSonido("error");
                 Alert alert = new Alert(Alert.AlertType.WARNING, "El código y la descripción no pueden estar vacíos.");
                 alert.showAndWait();
                 return;
@@ -282,7 +287,7 @@ public class MainInventarioController implements Initializable {
                     && nuevoDescripcion.equals(productoSeleccionado.getDescripcion())
                     && nuevoCantidad == productoSeleccionado.getCantidad()
                     && nuevoUbicacion.equals(productoSeleccionado.getUbicacion())) {
-
+                reproducirSonido("error");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Modifica algo");
                 alert.showAndWait();
 
@@ -300,15 +305,18 @@ public class MainInventarioController implements Initializable {
 
                 if (actualizado) {
                     actualizarTabla();
+                    reproducirSonido("exito");
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Producto actualizado correctamente");
                     alert.showAndWait();
                 } else {
+                    reproducirSonido("error");
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Error al actualizar producto");
                     alert.showAndWait();
                 }
             }
 
         } else {
+            reproducirSonido("error");
             Alert alert = new Alert(Alert.AlertType.WARNING, "No has modificado nada");
             alert.showAndWait();
         }
@@ -340,14 +348,16 @@ public class MainInventarioController implements Initializable {
 
                 if (eliminado) {
                     actualizarTabla();
-
+                    reproducirSonido("exito");
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Producto eliminado correctamente");
                     alert.showAndWait();
                 } else {
+                    reproducirSonido("error");
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Error al eliminar producto");
                     alert.showAndWait();
                 }
             } else {
+                reproducirSonido("exito");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Producto cancelado correctamente");
                 alert.showAndWait();
                 actualizarTabla();
@@ -374,6 +384,7 @@ public class MainInventarioController implements Initializable {
 
             actualizarTabla();
         } catch (IOException ex) {
+            reproducirSonido("error");
             Logger.getLogger(MainInventarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -395,6 +406,7 @@ public class MainInventarioController implements Initializable {
             stage.setScene(sc);
             stage.showAndWait();
         } catch (IOException ex) {
+            reproducirSonido("error");
             Logger.getLogger(MainInventarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -488,41 +500,37 @@ public class MainInventarioController implements Initializable {
         String estiloActual = anchorPane.getStyle();
         anchorPane.setStyle("-fx-font-family: '" + familiaFuenteActual + "'; -fx-font-size: " + tamanoLetraActual + "px;");
     }
-    
+
     private void reproducirSonido(String tipo) {
-    // 1. Verificamos si la opción está activada en el menú
-    if (mSonido == null || !mSonido.isSelected()) {
-        return;
-    }
-
-    try {
-        String archivo = "";
-        
-        // 2. Elegimos el archivo según el tipo
-        if (tipo.equals("exito")) {
-            archivo = "exito.wav"; 
-        } else if (tipo.equals("error")) {
-            archivo = "error.wav";
+        // Verificamos si la opción está activada en el menu
+        if (mSonido == null || !mSonido.isSelected()) {
+            return;
         }
 
-        // 3. Obtenemos la ruta correcta del recurso
-        // Nota: La ruta debe ser relativa a la carpeta 'resources'
-        URL recurso = getClass().getResource("/maven/register/asset/sound/" + archivo);
-        
-        if (recurso != null) {
-            // 4. Creamos el Objeto Media y el MediaPlayer
-            Media media = new Media(recurso.toExternalForm());
-            MediaPlayer player = new MediaPlayer(media);
-            
-            // 5. Reproducimos
-            player.play();
-        } else {
-            System.out.println("No se encuentra el archivo de sonido: " + archivo);
-        }
+        try {
+            String archivo = "";
 
-    } catch (Exception e) {
-        System.out.println("Error al reproducir audio: " + e.getMessage());
-        e.printStackTrace();
+            // Elegimos el archivo según el tipo
+            if (tipo.equals("exito")) {
+                archivo = "exito.mp3";
+            } else if (tipo.equals("error")) {
+                archivo = "error.mp3";
+            }
+
+            URL recurso = getClass().getResource("/maven/proyecto/asset/sound/" + archivo);
+
+            if (recurso != null) {
+                Media media = new Media(recurso.toExternalForm());
+                MediaPlayer player = new MediaPlayer(media);
+
+                player.play();
+            } else {
+                System.out.println("No se encuentra el archivo de sonido: " + archivo);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al reproducir audio: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
-}
 }

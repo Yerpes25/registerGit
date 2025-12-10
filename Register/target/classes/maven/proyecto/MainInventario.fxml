@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="501.0" prefWidth="850.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.register.MainInventarioController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="501.0" prefWidth="850.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.proyecto.MainInventarioController">
    <children>
       <VBox prefHeight="540.0" prefWidth="850.0">
          <children>
