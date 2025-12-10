@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -35,6 +36,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -102,10 +105,6 @@ public class MainInventarioController implements Initializable {
     private AnchorPane anchorPane;
     private double tamanoLetraActual = 13.0;
     @FXML
-    private Menu menuItem;
-    @FXML
-    private HBox camposTexto;
-    @FXML
     private MenuItem mCargarDatos;
     @FXML
     private MenuItem mNopturno;
@@ -115,7 +114,12 @@ public class MainInventarioController implements Initializable {
     private MenuItem mAumentar;
     @FXML
     private MenuItem mDisminuir;
-    private MenuItem mColorGrafico;
+    @FXML
+    private Menu menuItem1;
+    @FXML
+    private CheckMenuItem mSonido;
+    @FXML
+    private HBox camposTexto;
 
     /**
      * Initializes the controller class.
@@ -132,8 +136,7 @@ public class MainInventarioController implements Initializable {
         mClaro.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
         mAumentar.setAccelerator(KeyCombination.keyCombination("Ctrl+T"));
         mDisminuir.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));
-        menuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));
-        mColorGrafico.setAccelerator(KeyCombination.keyCombination("Ctrl+W"));
+        menuItem1.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));
 
         fuentes = Font.getFamilies();
 
@@ -143,7 +146,7 @@ public class MainInventarioController implements Initializable {
                 familiaFuenteActual = fuente;
                 anchorPane.setStyle("-fx-font-family: '" + familiaFuenteActual + "'; -fx-font-size: " + tamanoLetraActual + "px;");
             });
-            menuItem.getItems().add(item);
+            menuItem1.getItems().add(item);
         }
 
 //        miUbicacion.getSelectionModel().selectedItemProperty().addListener(cl);
@@ -485,4 +488,41 @@ public class MainInventarioController implements Initializable {
         String estiloActual = anchorPane.getStyle();
         anchorPane.setStyle("-fx-font-family: '" + familiaFuenteActual + "'; -fx-font-size: " + tamanoLetraActual + "px;");
     }
+    
+    private void reproducirSonido(String tipo) {
+    // 1. Verificamos si la opción está activada en el menú
+    if (mSonido == null || !mSonido.isSelected()) {
+        return;
+    }
+
+    try {
+        String archivo = "";
+        
+        // 2. Elegimos el archivo según el tipo
+        if (tipo.equals("exito")) {
+            archivo = "exito.wav"; 
+        } else if (tipo.equals("error")) {
+            archivo = "error.wav";
+        }
+
+        // 3. Obtenemos la ruta correcta del recurso
+        // Nota: La ruta debe ser relativa a la carpeta 'resources'
+        URL recurso = getClass().getResource("/maven/register/asset/sound/" + archivo);
+        
+        if (recurso != null) {
+            // 4. Creamos el Objeto Media y el MediaPlayer
+            Media media = new Media(recurso.toExternalForm());
+            MediaPlayer player = new MediaPlayer(media);
+            
+            // 5. Reproducimos
+            player.play();
+        } else {
+            System.out.println("No se encuentra el archivo de sonido: " + archivo);
+        }
+
+    } catch (Exception e) {
+        System.out.println("Error al reproducir audio: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
 }

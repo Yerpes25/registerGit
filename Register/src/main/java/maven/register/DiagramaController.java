@@ -55,10 +55,6 @@ public class DiagramaController implements Initializable {
         //Metemos en una lista todos los datos de la base de datos
         ObservableList<Producto> listaProductos = model.cargarDatos();
         
-        //Creamos un nuevo objeto de tipo XYChart que tenga de tipo un string y un integer
-       
-        series.setName("Inventario");
-        
         // Recorre la lista y añade series añadiendo el codigo como x y la cantidad como y
         for(Producto p : listaProductos){
             series.getData().add(new XYChart.Data<>(p.getCodigo(), p.getCantidad()));
