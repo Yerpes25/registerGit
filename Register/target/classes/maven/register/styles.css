@@ -117,5 +117,5 @@
 }
 
 .default-color0.chart-bar {
-    -fx-bar-fill:BLUE;
+    -fx-bar-fill: rgb(123,50,240);
 }
