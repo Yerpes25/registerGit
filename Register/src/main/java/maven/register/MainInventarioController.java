@@ -23,7 +23,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -36,7 +35,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -90,6 +88,7 @@ public class MainInventarioController implements Initializable {
     private Producto modelCodigo = null;
     private ObservableList<String> olCodigo;
     private List<String> fuentes;
+    private String familiaFuenteActual = "System";
 
     @FXML
     private Button btnNuevo;
@@ -116,10 +115,7 @@ public class MainInventarioController implements Initializable {
     private MenuItem mAumentar;
     @FXML
     private MenuItem mDisminuir;
-    @FXML
     private MenuItem mColorGrafico;
-    @FXML
-    private ColorPicker colores;
 
     /**
      * Initializes the controller class.
@@ -144,7 +140,8 @@ public class MainInventarioController implements Initializable {
         for (String fuente : fuentes) {
             MenuItem item = new MenuItem(fuente);
             item.setOnAction(e -> {
-                anchorPane.setStyle("-fx-font-family: '" + fuente + "';");
+                familiaFuenteActual = fuente;
+                anchorPane.setStyle("-fx-font-family: '" + familiaFuenteActual + "'; -fx-font-size: " + tamanoLetraActual + "px;");
             });
             menuItem.getItems().add(item);
         }
@@ -442,7 +439,6 @@ public class MainInventarioController implements Initializable {
         Platform.exit();
     }
 
-    @FXML
     public void menuGrafico(ActionEvent event) {
         mostrarDiagrama(event);
     }
@@ -487,20 +483,6 @@ public class MainInventarioController implements Initializable {
 
     private void actualizarTamanoFuente() {
         String estiloActual = anchorPane.getStyle();
-        anchorPane.setStyle(estiloActual + "; -fx-font-size: " + tamanoLetraActual + "px;");
-    }
-
-    private void cambiarColor() {
-        Color color = colores.getValue();
-        
-        String rgb = String.format("rgb(%d, %d, %d)",
-        (int)(color.getRed() * 255),
-        (int)(color.getGreen() * 255),
-        (int)(color.getBlue() * 255));
-
-        String css =
-        ".default-color0.chart-bar {\n" +
-        "    -fx-bar-fill: " + rgb + ";\n" +
-        "}";
+        anchorPane.setStyle("-fx-font-family: '" + familiaFuenteActual + "'; -fx-font-size: " + tamanoLetraActual + "px;");
     }
 }

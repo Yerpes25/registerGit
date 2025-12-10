@@ -7,12 +7,14 @@ package maven.register;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ColorPicker;
 import maven.model.Producto;
 
 /**
@@ -29,6 +31,10 @@ public class DiagramaController implements Initializable {
     private NumberAxis ejeY;
     @FXML
     private CategoryAxis ejeX;
+    @FXML
+    private ColorPicker colorPicker;
+    
+     XYChart.Series<String, Integer> series = new XYChart.Series<>();
     
     // Creamos un nuevo producto llamado model
     private Producto model;
@@ -50,7 +56,7 @@ public class DiagramaController implements Initializable {
         ObservableList<Producto> listaProductos = model.cargarDatos();
         
         //Creamos un nuevo objeto de tipo XYChart que tenga de tipo un string y un integer
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+       
         series.setName("Inventario");
         
         // Recorre la lista y añade series añadiendo el codigo como x y la cantidad como y
@@ -60,4 +66,12 @@ public class DiagramaController implements Initializable {
         tablaGrafico.getData().add(series) ;
     }
     
+    @FXML
+    public void cambiarColor(ActionEvent event){
+        String color = "#" + colorPicker.getValue().toString().substring(2,8);
+        
+        for(XYChart.Data<String, Integer> dato : series.getData()){
+            dato.getNode().setStyle("-fx-bar-fill: " + color + ";");
+        }
+    }
 }

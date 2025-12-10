@@ -3,11 +3,13 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.register.DiagramaController">
    <children>
-      <BarChart fx:id="tablaGrafico" layoutX="66.0" layoutY="14.0" prefHeight="371.0" prefWidth="482.0" stylesheets="@styles.css">
+      <BarChart fx:id="tablaGrafico" layoutX="89.0" layoutY="37.0" prefHeight="325.0" prefWidth="422.0" stylesheets="@styles.css">
         <xAxis>
           <CategoryAxis fx:id="ejeX" label="Producto" side="BOTTOM" />
         </xAxis>
@@ -15,5 +17,7 @@
           <NumberAxis fx:id="ejeY" label="Cantidad" side="LEFT" />
         </yAxis>
       </BarChart>
+      <ColorPicker fx:id="colorPicker" layoutX="436.0" layoutY="363.0" onAction="#cambiarColor" />
+      <Label layoutX="322.0" layoutY="362.0" prefHeight="26.0" prefWidth="96.0" text="Cambiar color:" />
    </children>
 </AnchorPane>

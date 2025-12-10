@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -30,17 +29,8 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Aplicacion">
                   <items>
-                    <MenuItem fx:id="mActualizar" onAction="#menuActualizar" text="Refrescar datos" />
+                    <MenuItem fx:id="mActualizar" mnemonicParsing="false" onAction="#menuActualizar" text="Refrescar datos" />
                         <MenuItem fx:id="mCargarDatos" mnemonicParsing="false" onAction="#menuCargarDatos" text="Cargar datos" />
-                        <Menu mnemonicParsing="false" onAction="#menuGrafico" text="Gráfico">
-                          <items>
-                            <MenuItem fx:id="mColorGrafico" mnemonicParsing="false" text="Colores">
-                                 <graphic>
-                                    <ColorPicker fx:id="colores" />
-                                 </graphic>
-                              </MenuItem>
-                          </items>
-                        </Menu>
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="mCerrarSesion" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesion" />
                         <MenuItem fx:id="mSalir" mnemonicParsing="false" onAction="#menuSalir" text="Salir" />
@@ -93,33 +83,21 @@
                               <VBox prefHeight="264.0" prefWidth="158.0" styleClass="vboxDerechaTextos">
                                  <children>
                                     <Label prefHeight="25.0" prefWidth="70.0" text="Codigo:">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Label>
                                     <Label prefHeight="25.0" prefWidth="96.0" text="Descripción:">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
                                     </Label>
                                     <Label prefHeight="25.0" prefWidth="88.0" text="Cantidad:">
                                        <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </VBox.margin>
+                                       </font>
                                     </Label>
                                     <Label prefHeight="25.0" prefWidth="88.0" text="Ubicacion:">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
