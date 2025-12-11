@@ -73,19 +73,11 @@ public class LoginController {
     @FXML
     private MenuItem mlSalir;
     @FXML
-    private AnchorPane vboxPane;
+    private VBox vboxPane;
     @FXML
     private Menu mlSelect;
     @FXML
-    private Pane panelLoginIzquierdaCampos;
-    @FXML
-    private Pane panelLoginIzquierdaInicioSesion;
-    @FXML
-    private Pane PanelDebajoBotones;
-    @FXML
     private Label jlInicio;
-    @FXML
-    private Pane panelImagen;
 
     public void initialize() {
         fuentes = Font.getFamilies();
