@@ -1,56 +1,58 @@
 .root {
-    -token-fondo-principal: #FFFFFF;      /* Blanco */
-    -token-fondo-secundario: #282EB5;     /* Azul oscuro original */
-    -token-texto-principal: #000000;      /* Negro */
-    -token-input: #F9F9F9;             /* Gris muy claro para inputs */
+    -token-fondo-principal: #FFFFFF;      /* Blanco*/
+    -token-fondo-secundario: #282EB5;     /* Azul oscuro original*/
+    -token-texto-principal: #000000;      /* Negro*/
+    -token-input: #F9F9F9;             /* Gris muy claro para inputs*/
     -token-borde: #cccccc;              /*Color clarito para los border*/
     -token-negro: #000000;              /* Color negro*/
     -token-borde-oscuro: #999999;       /*Color oscuro para border*/
+    -token-borde-oscuro-medio: #404040;       /*Color medio gris para border*/
+    -token-negro-suave: #1e1e1e;            /*Color de grafico*/
+    
+    /*TOKENS PARA BOTONES*/
+    -token-btn-bg: #003F86;       /*Azul*/
+    -token-btn-text: #FFFFFF;     /*Texto blanco*/
+    -token-btn-hover: #0056b3;    /*Azul mas brillante al pasar ratón*/
+    -token-btn-active: #002a5c;  /*Azul oscuro al hacer clic*/
+    -token-btn-botones: #C7C7C7; /*Color de botones en el main*/
+    
+    /*TOKENS PARA BOTONES MAIN*/
+    -token-btn-botones: #B3AFAF;      /* Tu color base actual */
+    -token-btn-hoverMain: #BDB7B7;        /* Un poco mas oscuro para hover */
+    -token-btn-focus: #003F86;        /* Color de borde al seleccionar */
 }
 
-/**************Para todos los input**************/
-
-.input-general{
-    -fx-background-color: -token-input;
-    -fx-border-color: -token-borde;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-text-fill: -token-negro;
+/*HOVER-> Cuando pasas el raton por encima*/
+/*Focus-> Cuando haces click*/
+.oscuro {
+    -token-fondo-principal: #2b2b2b;      /* Gris oscuro*/
+    -token-fondo-secundario: #1e1e1e;     /* Casi negro*/
+    -token-texto-principal: #FFFFFF;      /* Blanco*/
+    -token-input-bg: #404040;             /* Gris medio para inputs*/
+    -token-input-hover: #4a4a4a;          /* Un poco más claro*/
+    -token-borde: #555555;                /* Borde gris oscuro*/
+    -token-borde-oscuro: #888888;         /* Borde gris claro*/
+    -token-acento: #00bcd4;               /* Azul para destacar en oscuro*/
+    -token-label-Main: #1e1e1e;
+    
+    /* TOKENS PARA BOTONES */
+    -token-btn-bg: #003F86;       /*Azul*/
+    -token-btn-text: #FFFFFF;     /*Texto blanco*/
+    -token-btn-hover: #40a8e0;    /*Un azul mas claro para destacar en fondo negro*/
+    -token-btn-active: #002a5c;  /*Azul oscuro al hacer click*/
+    
+    -token-borde: #555555;                /* Borde gris oscuro*/
+    -token-borde-oscuro: #888888;         /* Borde gris claro*/
+    -token-acento: #00bcd4;               /* Azul para destacar en oscuro*/
+    
+    /*TOKENS PARA BOTONES MAIN*/
+    -token-btn-botones: #B3AFAF;      /* Tu color base actual */
+    -token-btn-hover: #B5B3B3;        /* Un poco mas oscuro para hover */
+    -token-btn-focus: #003F86;        /* Color de borde al seleccionar */
 }
 
-.input-general:hover{
-    -fx-background-color: -token-fondo-principal;
-    -fx-border-color: -token-borde-oscuro;
-}
 
-.input-general:focused{
-    -fx-background-color: -token-fondo-principal;
-    -fx-border-color: -token-borde-oscuro;
-    -fx-border-width: 2px;
-}
 
-/******************************************************/
-
-.icon-boton-borrar {
-    -fx-graphic: url('asset/image/borrar1.png');
-    -fx-graphic-text-gap: 10;
-}
-
-.icon-boton-nuevo {
-    -fx-graphic: url('asset/image/nuevo.png');
-    -fx-graphic-text-gap: 10;
-}
-
-.icon-boton-modificar {
-    -fx-graphic: url('asset/image/modificar.png');
-    -fx-graphic-text-gap: 10;
-}
-
-/*****************Login*****************/
-.icono-boton-registrar{
-    -fx-graphic: url('asset/image/agregar.png');
-    -fx-graphic-text-gap: 10;
-}
 
 #VboxPanelIzquierda{
     -fx-background-color:-token-fondo-principal;
@@ -65,6 +67,373 @@
     -fx-graphic-text-gap: 10;
 }
 
-#jivLogo{
-    
+.icono-boton-registrar{
+    -fx-graphic: url('asset/image/agregar.png');
+    -fx-graphic-text-gap: 10;
 }
+
+
+/**************Para todos los botones del Main**************/
+#btnNuevo{
+    -fx-background-color: -token-btn-botones;
+    -fx-text-fill: -token-negro;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-graphic: url('asset/image/nuevo.png');
+    -fx-graphic-text-gap: 10;
+}
+
+#btnModificar{
+    -fx-background-color: -token-btn-botones;
+    -fx-text-fill: -token-negro;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-graphic: url('asset/image/modificar.png');
+    -fx-graphic-text-gap: 10;
+}
+
+#btnEliminar{
+    -fx-background-color: -token-btn-botones;
+    -fx-text-fill: -token-negro;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-graphic: url('asset/image/borrar1.png');
+    -fx-graphic-text-gap: 10;
+}
+
+#miDiagrama{
+    -fx-background-color: -token-btn-botones;
+    -fx-text-fill: -token-negro;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.combo-box {
+    -fx-background-color: -token-input;
+    -fx-border-color: -token-borde;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: -token-texto-principal;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: -token-texto-principal;
+}
+
+.combo-box .arrow {
+    -fx-background-color: -token-texto-principal;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde;
+}
+
+#btnNuevo:hover, 
+#btnModificar:hover, 
+#btnEliminar:hover, 
+#miDiagrama:hover {
+    -fx-background-color: -token-btn-hoverMain;
+}
+
+#btnNuevo:focused, 
+#btnModificar:focused, 
+#btnEliminar:focused, 
+#miDiagrama:focused {
+    -fx-background-color: -token-btn-hoverMain;
+    -fx-border-color: -token-btn-focus;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.combo-box:hover {
+    -fx-background-color: -token-btn-hoverMain;
+}
+
+.combo-box:focused {
+    -fx-background-color: -token-input;
+    -fx-border-color: -token-btn-focus; 
+    -fx-border-width: 2px;
+}
+
+/*OSCURO*/
+.oscuro .combo-box {
+    -fx-background-color: -token-input-bg;
+    -fx-border-color: -token-borde;
+}
+
+.oscuro .combo-box:hover {
+    -fx-background-color: -token-input-hover;
+}
+
+.oscuro .combo-box-popup .list-view {
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde;
+}
+
+.oscuro .combo-box-popup .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+
+.oscuro .combo-box-popup .list-cell:hover {
+    -fx-background-color: -token-btn-hover;
+    -fx-text-fill: white;
+}
+/******************************************************/
+
+
+
+/**************Para todos los input y label**************/
+.input-general{
+    -fx-background-color: -token-input;
+    -fx-border-color: -token-borde;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: -token-texto-principal;
+}
+
+.input-general:hover{
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde-oscuro;
+}
+
+.input-general:focused{
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde-oscuro;
+    -fx-border-width: 2px;
+}
+
+.label{
+    -fx-text-fill: -token-texto-principal;
+}
+
+.input-general-Main{
+    -fx-background-color: -token-input;
+    -fx-border-color: -token-borde;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: -token-texto-principal;
+}
+
+.input-general-Main:hover{
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde-oscuro;
+}
+
+.input-general-Main:focused{
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde-oscuro;
+    -fx-border-width: 2px;
+}
+
+/*OSCURO*/
+.input-general{
+    -fx-background-color: -token-label-Main;
+    -fx-border-color: -token-borde;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: -token-texto-principal;
+}
+
+.input-general:hover{
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde-oscuro;
+}
+
+.input-general:focused{
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde-oscuro;
+    -fx-border-width: 2px;
+}
+
+.input-general-Main{
+    -fx-background-color: -token-label-Main;
+    -fx-border-color: -token-borde;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: -token-texto-principal;
+}
+
+.oscuro .input-general-Main:hover{
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde-oscuro;
+}
+
+.oscuro .input-general-Main:focused{
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde-oscuro;
+    -fx-border-width: 2px;
+}
+/******************************************************/
+
+
+/**************Para el menu**************/
+.menu-bar{
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.menu-bar .label{
+    -fx-text-fill: -token-texto-principal;
+}
+
+.menu-bar .menu-button:hover,
+.menu-bar .menu-button:focused{
+    -fx-background-color: -token-input; 
+}
+
+/*Despegables menu*/
+.context-menu{
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde;
+    -fx-border-width: 1px;
+}
+
+.menu-item .label {
+    -fx-text-fill: -token-texto-principal;
+}
+
+.menu-item:focused {
+    -fx-background-color: -token-borde;
+}
+
+/*OSCURO*/
+.oscuro .menu-item:focused, 
+.oscuro .menu-item:hover{
+    -fx-background-color: -token-borde;  
+}
+
+.oscuro .menu-bar .menu-button:hover,
+.oscuro .menu-bar .menu-button:focused {
+    -fx-background-color:-token-borde-oscuro;
+}
+/******************************************************/
+
+
+/**************Para todos los botones**************/
+.button {
+    -fx-background-color: -token-btn-bg;
+    -fx-text-fill: -token-btn-text;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-background-color: -token-btn-hover;
+}
+
+.button:active{
+    -fx-background-color: -token-btn-active;
+}
+/******************************************************/
+
+
+/**************Para la tabla**************/
+.oscuro .table-view .column-header-background {
+    -fx-background-color: -token-input-bg;
+}
+
+.oscuro .table-view .column-header .label {
+    -fx-text-fill: black;
+}
+
+.oscuro .table-row-cell {
+    -fx-background-color: -token-fondo-principal;
+}
+
+.oscuro .table-cell {
+    -fx-text-fill: white;
+}
+
+.oscuro .table-row-cell:selected {
+    -fx-background-color: -token-negro;
+    -fx-text-fill: black;
+}
+
+.oscuro .table-view .scroll-bar .thumb {
+    -fx-background-color: #555555;
+}
+/******************************************************/
+
+/**************Para el splitpane**************/
+.split-pane {
+    -fx-background-color: -token-fondo-principal;
+    -fx-padding: 0;
+}
+
+.split-pane > .split-pane-divider {
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde;
+    -fx-border-width: 1px;
+}
+
+.oscuro .split-pane > .split-pane-divider {
+    -fx-border-color: -token-borde-oscuro;
+}
+/******************************************************/
+
+/**************Para el nuevo usuario**************/
+#AnchorPane {
+    -fx-background-color: -token-fondo-principal;
+}
+
+.label-Nuevo {
+    -fx-text-fill: -token-negro;
+}
+
+.text-field-nuevo {
+    -fx-background-color: -token-input-bg;
+    -fx-border-color: -token-borde;
+    -fx-text-fill: -token-texto-principal;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.text-field-nuevo:hover {
+    -fx-background-color: -token-input-hover;
+    -fx-border-color: -token-borde-oscuro;
+}
+
+.text-field-nuevo:focused {
+    -fx-background-color: -token-fondo-principal;
+    -fx-border-color: -token-borde-oscuro;
+    -fx-border-width: 2px;
+}
+
+/*OSCURO*/
+.oscuro .text-field-nuevo {
+    -fx-text-fill: white;
+    -fx-border-color: -token-borde-oscuro;
+}
+
+.oscuro .text-field-nuevo:focused {
+    -fx-border-color: -token-negro;
+}
+
+.oscuro .label-Nuevo {
+    -fx-text-fill: white;
+}
+/******************************************************/
+
+
+
+/**************Para el grafico**************/
+#tablaGrafico .chart-plot-background {
+    -fx-background-color: white; 
+}
+
+#tablaGrafico .axis-label {
+    -fx-text-fill: white;
+}
+
+.color-picker .label {
+    -fx-text-fill: black;
+}
+
+.oscuro #tablaGrafico .chart-plot-background {
+    -fx-background-color: -token-negro-suave; 
+}
+/******************************************************/

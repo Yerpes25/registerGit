@@ -14,6 +14,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="vboxPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.proyecto.LoginController">
@@ -49,24 +50,24 @@
          <children>
             <VBox fx:id="VboxPanelIzquierda" alignment="TOP_CENTER" prefHeight="506.0" prefWidth="398.0" stylesheets="@styles.css">
                <children>
-                  <Label fx:id="jlInicio" alignment="CENTER" contentDisplay="CENTER" prefHeight="127.0" prefWidth="405.0" styleClass="fondoLogin" text="Inicia Sesión" textAlignment="CENTER">
+                  <Label fx:id="jlInicio" alignment="CENTER" contentDisplay="CENTER" prefHeight="127.0" prefWidth="405.0" text="Inicia Sesión" textAlignment="CENTER">
                      <font>
                         <Font name="AppleGothic Regular" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="jlUser" styleClass="marginLoginCampos" text="Usuario">
-                     <font>
-                        <Font name="Roboto Regular" size="14.0" />
-                     </font>
+                  <Label fx:id="jlUser" text="Usuario">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
                   </Label>
                   <TextField fx:id="jtfUser" prefHeight="32.0" prefWidth="379.0" styleClass="input-general">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label fx:id="jlPassword" styleClass="marginLoginCampos" text="Contraseña">
+                  <Label fx:id="jlPassword" text="Contraseña">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets bottom="5.0" top="10.0" />
                      </VBox.margin>
                   </Label>
                   <PasswordField fx:id="jpfPassword" prefHeight="36.0" prefWidth="379.0" styleClass="input-general">
@@ -93,10 +94,14 @@
                <children>
                   <ImageView fx:id="jivLogo" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" style="-fx-fit-width: 150;">
                      <image>
-                        <Image url="@asset/image/Logo.png" />
+                        <Image url="@asset/image/Logo2.png" />
                      </image>
                      <effect>
-                        <InnerShadow />
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
                      </effect>
                   </ImageView>
                </children>

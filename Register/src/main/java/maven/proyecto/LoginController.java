@@ -93,7 +93,7 @@ public class LoginController {
         if (mSonido != null) {
             mSonido.setSelected(maven.model.Configuracion.sonidoActivo);
         }
-        
+
         GestorEstilos.cargarEstilos(vboxPane);
     }
 

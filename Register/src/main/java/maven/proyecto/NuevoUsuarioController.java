@@ -11,8 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import maven.model.User;
+import maven.util.GestorEstilos;
 
 /**
  * FXML Controller class
@@ -32,6 +34,8 @@ public class NuevoUsuarioController implements Initializable {
     @FXML
     private TextField tfContrasenia;
     private User model = new User();
+    @FXML
+    private VBox anchorPane;
 
     /**
      * Initializes the controller class.
@@ -39,6 +43,8 @@ public class NuevoUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        GestorEstilos.cargarEstilos(anchorPane);
     }
 
 

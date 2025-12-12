@@ -15,7 +15,9 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.layout.VBox;
 import maven.model.Producto;
+import maven.util.GestorEstilos;
 
 /**
  * FXML Controller class
@@ -38,6 +40,8 @@ public class DiagramaController implements Initializable {
     
     // Creamos un nuevo producto llamado model
     private Producto model;
+    @FXML
+    private VBox anchorPane;
 
     /**
      * Initializes the controller class.
@@ -47,6 +51,8 @@ public class DiagramaController implements Initializable {
         // TODO
         // Inicializamos model con el constructor y llamamos al metodo cargarDatosGrafico
         model = new Producto();
+        
+        GestorEstilos.cargarEstilos(anchorPane);
         cargarDatosGrafico();
     }    
 

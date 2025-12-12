@@ -14,16 +14,15 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="501.0" prefWidth="850.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.proyecto.MainInventarioController">
-   <children>
-      <VBox prefHeight="540.0" prefWidth="850.0">
+<VBox id="AnchorPane" fx:id="anchorPane" prefHeight="540.0" prefWidth="850.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.proyecto.MainInventarioController">
          <children>
             <MenuBar>
               <menus>
@@ -64,11 +63,11 @@
                 <AnchorPane id="parteAbajoSplit" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
               </items>
             </SplitPane>
-            <HBox prefHeight="900.0" prefWidth="850.0">
+            <HBox prefHeight="900.0" prefWidth="850.0" stylesheets="@styles.css">
                <children>
-                  <Pane id="panelFondoIzquierda" prefHeight="550.0" prefWidth="730.0" style="-fx-background-color: #FFFFFF;">
-                     <children>
-                        <TableView fx:id="tableModel" layoutY="2.0" onMouseClicked="#seleccionar" prefHeight="238.0" prefWidth="548.0">
+            <VBox prefHeight="506.0" prefWidth="538.0" stylesheets="@styles.css">
+               <children>
+                        <TableView fx:id="tableModel" onMouseClicked="#seleccionar" prefHeight="238.0" prefWidth="548.0">
                           <columns>
                             <TableColumn fx:id="codProducto" prefWidth="81.5999755859375" text="CODIGO" />
                             <TableColumn fx:id="descProducto" prefWidth="165.60004425048828" text="DESCRIPCION" />
@@ -79,13 +78,13 @@
                               <Tooltip text="Selecciona un producto" />
                            </tooltip>
                         </TableView>
-                        <HBox fx:id="camposTexto" layoutY="240.0" prefHeight="264.0" prefWidth="548.0">
+                        <HBox fx:id="VboxPanelIzquierda" prefHeight="264.0" prefWidth="548.0">
                            <children>
-                              <VBox prefHeight="264.0" prefWidth="158.0" styleClass="vboxDerechaTextos">
+                              <VBox prefHeight="264.0" prefWidth="158.0" stylesheets="@styles.css">
                                  <children>
                                     <Label prefHeight="25.0" prefWidth="70.0" text="Codigo:">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
                                        </VBox.margin>
                                     </Label>
                                     <Label prefHeight="25.0" prefWidth="96.0" text="Descripción:">
@@ -108,17 +107,17 @@
                                     <Insets />
                                  </HBox.margin>
                               </VBox>
-                              <VBox prefHeight="264.0" prefWidth="394.0" styleClass="vboxIzquierdaTextos">
+                              <VBox prefHeight="264.0" prefWidth="366.0" stylesheets="@styles.css">
                                  <children>
-                                    <TextField fx:id="miCodigo">
+                                    <TextField fx:id="miCodigo" styleClass="input-general-Main">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                          <Insets bottom="8.0" left="10.0" right="10.0" top="30.0" />
                                        </VBox.margin>
                                        <tooltip>
                                           <Tooltip text="Pon el codigo del producto" />
                                        </tooltip>
                                     </TextField>
-                                    <TextField fx:id="miDescripcion">
+                                    <TextField fx:id="miDescripcion" styleClass="input-general-Main">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
@@ -126,9 +125,9 @@
                                           <Tooltip text="Pon la descripción del producto" />
                                        </tooltip>
                                     </TextField>
-                                    <TextField fx:id="miCantidad">
+                                    <TextField fx:id="miCantidad" styleClass="input-general-Main">
                                        <VBox.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="8.0" />
                                        </VBox.margin>
                                        <tooltip>
                                           <Tooltip text="Pon la cantidad del producto" />
@@ -146,38 +145,56 @@
                               </VBox>
                            </children>
                         </HBox>
-                     </children>
-                  </Pane>
-                  <Pane id="panel-derecha" prefHeight="506.0" prefWidth="489.0" styleClass="panel-derecha">
-                     <children>
-                        <Label id="contenidoPane" layoutX="79.0" layoutY="235.0" prefHeight="37.0" prefWidth="215.0" styleClass="contenidoPane" text="CONTENIDO DE PRODUCTOS" textAlignment="CENTER" textFill="#fffbfb">
-                        </Label>
-                        <Button fx:id="btnEliminar" alignment="CENTER_RIGHT" layoutX="46.0" layoutY="327.0" mnemonicParsing="false" onAction="#btnEliminar" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-borrar" text="Eliminar" textAlignment="RIGHT">
-                           <tooltip>
-                              <Tooltip text="Elimina un producto" />
-                           </tooltip></Button>
-                        <Button fx:id="btnNuevo" layoutX="180.0" layoutY="327.0" mnemonicParsing="false" onAction="#aniadirNuevo" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-nuevo" text="Nuevo">
+               </children>
+            </VBox>
+            <VBox fx:id="VboxPanelDerecha" prefHeight="506.0" prefWidth="316.0">
+               <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@asset/image/Logo2.png" />
+                           </image>
+                     <VBox.margin>
+                        <Insets left="75.0" top="50.0" />
+                     </VBox.margin>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                        </ImageView>
+                        <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#aniadirNuevo" prefHeight="37.0" prefWidth="202.0" styleClass="icon-boton-nuevo" text="Nuevo">
                            <tooltip>
                               <Tooltip text="Crea un nuevo producto" />
-                           </tooltip></Button>
-                        <Button fx:id="btnModificar" layoutX="46.0" layoutY="407.0" mnemonicParsing="false" onAction="#btnModificar" prefHeight="37.0" prefWidth="102.0" styleClass="icon-boton-modificar" text="Modificar">
+                           </tooltip>
+                     <VBox.margin>
+                        <Insets left="55.0" top="30.0" />
+                     </VBox.margin></Button>
+                        <Button fx:id="btnEliminar" alignment="CENTER" mnemonicParsing="false" onAction="#btnEliminar" prefHeight="37.0" prefWidth="202.0" styleClass="icon-boton-borrar" text="Eliminar" textAlignment="RIGHT">
+                           <tooltip>
+                              <Tooltip text="Elimina un producto" />
+                           </tooltip>
+                     <VBox.margin>
+                        <Insets left="55.0" top="20.0" />
+                     </VBox.margin></Button>
+                        <Button fx:id="btnModificar" mnemonicParsing="false" onAction="#btnModificar" prefHeight="37.0" prefWidth="202.0" styleClass="icon-boton-modificar" text="Modificar">
                            <tooltip>
                               <Tooltip text="Modifica un producto" />
-                           </tooltip></Button>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@asset/image/Logo1.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="miDiagrama" layoutX="199.0" layoutY="398.0" mnemonicParsing="false" onAction="#mostrarDiagrama" prefHeight="54.0" prefWidth="63.0">
+                           </tooltip>
+                     <VBox.margin>
+                        <Insets left="55.0" top="20.0" />
+                     </VBox.margin></Button>
+                        <Button fx:id="miDiagrama" mnemonicParsing="false" onAction="#mostrarDiagrama" prefHeight="54.0" prefWidth="63.0">
                            <tooltip>
                               <Tooltip text="Mostrar un diagrama" />
-                           </tooltip></Button>
-                     </children>
-                  </Pane>
+                           </tooltip>
+                     <VBox.margin>
+                        <Insets left="125.0" top="20.0" />
+                     </VBox.margin></Button>
+               </children>
+            </VBox>
                </children>
             </HBox>
          </children>
       </VBox>
-   </children>
-</AnchorPane>

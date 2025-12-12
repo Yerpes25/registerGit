@@ -36,6 +36,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
@@ -94,15 +95,13 @@ public class MainInventarioController implements Initializable {
     private List<String> fuentes;
 
     @FXML
-    private Button btnNuevo;
-    @FXML
     private MenuItem mActualizar;
     @FXML
     private MenuItem mCerrarSesion;
     @FXML
     private MenuItem mSalir;
     @FXML
-    private AnchorPane anchorPane;
+    private VBox anchorPane;
     @FXML
     private MenuItem mCargarDatos;
     @FXML
@@ -118,7 +117,11 @@ public class MainInventarioController implements Initializable {
     @FXML
     private CheckMenuItem mSonido;
     @FXML
-    private HBox camposTexto;
+    private HBox VboxPanelIzquierda;
+    @FXML
+    private VBox VboxPanelDerecha;
+    @FXML
+    private Button btnNuevo;
 
     /**
      * Initializes the controller class.
@@ -126,7 +129,7 @@ public class MainInventarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        
         mActualizar.setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
         mCerrarSesion.setAccelerator(KeyCombination.keyCombination("Ctrl+L"));
         mSalir.setAccelerator(KeyCombination.keyCombination("Ctrl+Q"));

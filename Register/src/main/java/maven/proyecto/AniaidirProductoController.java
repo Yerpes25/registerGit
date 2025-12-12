@@ -14,9 +14,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import maven.model.Producto;
 import maven.model.Ubicacion;
+import maven.util.GestorEstilos;
 
 /**
  * FXML Controller class
@@ -44,6 +46,8 @@ public class AniaidirProductoController implements Initializable {
     private Ubicacion modelUbi = null;
     private Producto modelCodigo = null; 
     private ObservableList<String> olCodigo = FXCollections.observableArrayList();
+    @FXML
+    private VBox AnchorPane;
 
     /**
      * Initializes the controller class.
@@ -59,12 +63,16 @@ public class AniaidirProductoController implements Initializable {
         olUbi = modelUbi.cargarUbicacion();
         nmiUbi.setItems(olUbi);
         
+        
+        GestorEstilos.cargarEstilos(AnchorPane);
+        
         //Lo mismo que con ubicaciones pero ahora con productos
         modelCodigo = new Producto();
         olCodigo = modelCodigo.cargarCodigoProductos();
     }
 
     // Metodo para guardar producto en la base de datos
+    @FXML
     public void guardarProducto() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Error al añadir producto");
@@ -146,6 +154,7 @@ public class AniaidirProductoController implements Initializable {
     }
 
     // Metodo para cerrar la ventana de nuevo producto
+    @FXML
     public void cancelarProducto() {
         // Creamos un escenario que consiga la escena que esta abierta del boton nmiCancelar 
         // y la cierra
