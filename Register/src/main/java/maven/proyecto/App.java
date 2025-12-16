@@ -12,7 +12,7 @@ import javafx.scene.control.Alert;
 /**
  * JavaFX App
  * Control de registros de usuario y login
- * @author Nombre del Autor
+ * @author Yerpes
  * @version 1.0
  * @since 2025-24-11
  */
