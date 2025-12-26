@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import maven.model.FuncionHablar;
 import maven.model.User;
 import maven.util.GestorEstilos;
+import maven.util.GestorTactil;
 
 /**
  * FXML Controller class
@@ -55,7 +56,7 @@ public class NuevoUsuarioController implements Initializable {
         // TODO
 
         GestorEstilos.cargarEstilos(anchorPane);
-        
+        GestorTactil.hacerInteractable(anchorPane);
         
         adjudicarVoces();
         // Mensaje de bienvenida 

@@ -7,6 +7,7 @@ maven\proyecto\MainInventarioController.class
 maven\proyecto\CamaraController$1.class
 maven\proyecto\DiagramaController.class
 maven\model\Ubicacion.class
+maven\util\GestorTactil.class
 maven\util\GestorEstilos.class
 maven\proyecto\LoginController.class
 maven\model\User.class
