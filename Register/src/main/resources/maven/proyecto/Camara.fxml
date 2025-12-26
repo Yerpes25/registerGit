@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="494.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.proyecto.CamaraController">
+   <ImageView fx:id="idImagen" fitHeight="421.0" fitWidth="475.0" pickOnBounds="true" preserveRatio="true">
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
+   </ImageView>
+    <Button fx:id="btnCapturar" alignment="CENTER" contentDisplay="CENTER" onAction="#capturarFoto" prefHeight="6.0" prefWidth="144.0" text="Capturar Foto">
+      <VBox.margin>
+         <Insets top="20.0" />
+      </VBox.margin></Button>
+</VBox>

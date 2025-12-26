@@ -4,10 +4,13 @@ maven\model\Producto.class
 module-info.class
 maven\model\Configuracion.class
 maven\proyecto\MainInventarioController.class
+maven\proyecto\CamaraController$1.class
 maven\proyecto\DiagramaController.class
 maven\model\Ubicacion.class
 maven\util\GestorEstilos.class
 maven\proyecto\LoginController.class
 maven\model\User.class
+maven\model\FuncionHablar.class
+maven\proyecto\CamaraController.class
 maven\proyecto\App.class
 maven\proyecto\AniaidirProductoController.class
