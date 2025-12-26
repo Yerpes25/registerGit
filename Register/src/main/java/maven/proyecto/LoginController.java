@@ -35,6 +35,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import maven.model.FuncionHablar;
 import maven.model.User;
 import maven.util.GestorEstilos;
 
@@ -78,6 +79,12 @@ public class LoginController {
     private Menu mlSelect;
     @FXML
     private Label jlInicio;
+    @FXML
+    private CheckMenuItem cbVoz;
+    @FXML
+    private VBox VboxPanelIzquierda;
+    @FXML
+    private VBox VboxPanelDerecha;
 
     public void initialize() {
         fuentes = Font.getFamilies();
@@ -95,6 +102,16 @@ public class LoginController {
         }
 
         GestorEstilos.cargarEstilos(vboxPane);
+        
+        cbVoz.setSelected(FuncionHablar.estaVozActivada());
+        
+        cbVoz.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            FuncionHablar.setVozActivada(newValue);
+            
+            if(newValue) {
+                FuncionHablar.hablar("Modo voz activado");
+            }
+        });
     }
 
     @FXML
@@ -140,11 +157,11 @@ public class LoginController {
                     App.setRoot("MainInventario");
                 } else {
                     GestorEstilos.reproducir("error");
-                    App.showAlert("Error detectado", "Error al iniciar sesión. Datos de acceso incorrectos", Alert.AlertType.NONE);
+                    App.showAlert("Error detectado", "Error al iniciar sesión. Datos de acceso incorrectos", Alert.AlertType.WARNING);
                 }
             } else {
                 GestorEstilos.reproducir("error");
-                App.showAlert("Error detectado", "Error al iniciar sesión. Algún campo vacío", Alert.AlertType.NONE);
+                App.showAlert("Error detectado", "Error al iniciar sesión. Algún campo vacío", Alert.AlertType.WARNING);
             }
         } catch (IOException ex) {
 

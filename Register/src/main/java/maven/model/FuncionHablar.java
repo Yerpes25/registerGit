@@ -15,24 +15,23 @@ import javafx.scene.control.TextInputControl;
  */
 public class FuncionHablar {
     
-    private static boolean vozActivada = true;
+    private static boolean vozActivada = false;
     
     private static Process procesoActual;
     private static final Object BLOQUEO = new Object();
     
     public static void setVozActivada(boolean activada) {
         vozActivada = activada;
-        if (!activada) {
-            detenerSilencio(); // Si desactivan la voz, callamos lo que esté sonando
-        }
     }
 
-    public static boolean isVozActivada() {
+    public static boolean estaVozActivada() {
         return vozActivada;
     }
     
     public static void hablar(String texto) {
-        if (!vozActivada || texto == null || texto.trim().isEmpty()) return;
+        if (!vozActivada || texto == null || texto.trim().isEmpty()) {
+            return;
+        }
 
         new Thread(() -> {
             // Este bloque asegura que NUNCA haya dos hilos creando voz a la vez

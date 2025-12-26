@@ -42,6 +42,7 @@
                   </Menu>
                   <MenuItem fx:id="mlSalir" mnemonicParsing="false" text="Salir" />
                   <CheckMenuItem fx:id="mSonido" mnemonicParsing="false" onAction="#menuSonido" text="Activar sonido" />
+                  <CheckMenuItem fx:id="cbVoz" mnemonicParsing="false" text="Activar voz" />
                </items>
             </Menu>
          </menus>

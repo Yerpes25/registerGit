@@ -1,6 +1,8 @@
+maven\util\GestorHablar.class
 maven\proyecto\NuevoUsuarioController.class
 maven\model\Conection.class
 maven\model\Producto.class
+maven\util\GestorImagen.class
 module-info.class
 maven\model\Configuracion.class
 maven\proyecto\MainInventarioController.class
