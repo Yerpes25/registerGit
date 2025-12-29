@@ -10,7 +10,7 @@ import javafx.scene.input.ScrollEvent;
 
 /**
  *
- * @author Usuario
+ * @author Yerpes
  */
 public class GestorTactil {
     private static double ratonX, ratonY;
@@ -19,31 +19,30 @@ public class GestorTactil {
     
     public static void hacerInteractable(Node nodo) {
 
-        // 1. AL PULSAR EL RATÓN (Guardamos coordenadas iniciales)
+        /*Al pulsar el raton guardamos las coordinadas iniciales*/
         nodo.setOnMousePressed((MouseEvent event) -> {
-            // Guardamos dónde estaba el ratón
             ratonX = event.getSceneX();
             ratonY = event.getSceneY();
             
-            // Guardamos dónde estaba la imagen (para moverla)
+            // Guardamos dónde estaba la imagen para moverla
             nodoX = nodo.getTranslateX();
             nodoY = nodo.getTranslateY();
             
-            // Guardamos el ángulo actual (para rotarla)
+            // Guardamos el ángulo actual para rotarla
             anguloInicial = nodo.getRotate();
         });
 
-        // 2. AL ARRASTRAR EL RATÓN (Calculamos el movimiento manual)
+        // Al arrastrar el boton calculamos el movimiento manual
         nodo.setOnMouseDragged((MouseEvent event) -> {
             
+            /*Click izquierdo*/
             if (event.isPrimaryButtonDown()) {
-                // --- MOVIMIENTO (Click Izquierdo) ---
-                // Nueva posición = Posición guardada + (Distancia movida por el ratón)
+                // Nueva posición = Posición guardada + Distancia movida por el ratón
                 nodo.setTranslateX(nodoX + (event.getSceneX() - ratonX));
                 nodo.setTranslateY(nodoY + (event.getSceneY() - ratonY));
                 
             } else if (event.isSecondaryButtonDown()) {
-                // --- ROTACIÓN (Click Derecho) ---
+                /* Click Derecho*/
                 // Calculamos cuánto se ha movido el ratón horizontalmente
                 double deltaX = event.getSceneX() - ratonX;
                 // Rotamos proporcionalmente al movimiento
@@ -51,13 +50,14 @@ public class GestorTactil {
             }
         });
 
-        // 3. ZOOM MANUAL (Rueda del ratón)
+        // Zoom manual, es decir, la rueda del boton
         nodo.setOnScroll((ScrollEvent event) -> {
             double zoomFactor = 1.05;
             double deltaY = event.getDeltaY();
 
             if (deltaY < 0) {
-                zoomFactor = 0.95; // Alejar
+                // Alejar
+                zoomFactor = 0.95; 
             }
 
             // Aplicamos la escala matemática manualmente

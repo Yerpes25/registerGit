@@ -18,7 +18,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import maven.model.FuncionHablar;
+import maven.util.GestorHablar;
+import maven.util.GestorTactil;
 
 /**
  * FXML Controller class
@@ -35,6 +39,8 @@ public class CamaraController implements Initializable {
     private Webcam webcam;
     private boolean isRunning = true;
     private Image imagenCapturada = null;
+    @FXML
+    private VBox anchorPane;
 
     /**
      * Initializes the controller class.
@@ -42,6 +48,10 @@ public class CamaraController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        GestorTactil.hacerInteractable(anchorPane);
+        GestorHablar.adjudicarVoces(btnCapturar);
+        
+        FuncionHablar.hablar("Capturar imagen");
         iniciarWebcam();
     }
 

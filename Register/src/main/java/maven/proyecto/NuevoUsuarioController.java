@@ -4,16 +4,24 @@
  */
 package maven.proyecto;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import maven.model.FuncionHablar;
 import maven.model.User;
 import maven.util.GestorEstilos;
@@ -45,6 +53,8 @@ public class NuevoUsuarioController implements Initializable {
     private ImageView imagenPerfil;
     @FXML
     private Button btnImagen;
+    @FXML
+    private Button btnBorrarImagen;
 
     /**
      * Initializes the controller class.
@@ -53,18 +63,25 @@ public class NuevoUsuarioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
+        ponerImagenDefecto();
+        
+        /*Inicializamos los gestores*/
         GestorEstilos.cargarEstilos(anchorPane);
         GestorTactil.hacerInteractable(anchorPane);
-        GestorImagen.configurarDragAndDrop(imagenPerfil, btnImagen);
+        
+        /*Mandamos la imagen que hemos arrastrado */
+        GestorImagen.configurarDragAndDropImagen(imagenPerfil);
 
-        if (FuncionHablar.estaVozActivada()) {
+        /*Ponemos el boton que no se pueda usar*/
+        btnBorrarImagen.setDisable(true);
+
+        /*Mandamos a funcion hablar los elementos que queremos que hablen*/
             GestorHablar.adjudicarVoces(btnCrear, btnImagen, btnCancelar,
-                    tfContrasenia, tfCorreo, tfNombre);
+                    tfContrasenia, tfCorreo, tfNombre, btnBorrarImagen);
 
             // Mensaje de bienvenida 
             FuncionHablar.hablar("Bienvenido al registro de usuario");
-        }
-
+        
     }
 
     @FXML
@@ -94,19 +111,72 @@ public class NuevoUsuarioController implements Initializable {
             return;
         }
 
-        boolean exito = model.insertarUsuarios(usuario, email, pass);
+        InputStream flujoImagen = null;
+
+        try {
+            if (imagenPerfil.getImage() != null) {
+                // Convertimos la imagen de JavaFX a BufferedImage
+                BufferedImage bImage = SwingFXUtils.fromFXImage(imagenPerfil.getImage(), null);
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                // Escribimos en formato PNG en el flujo
+                ImageIO.write(bImage, "png", outputStream);
+                // Preparamos el flujo de entrada para la BD
+                flujoImagen = new ByteArrayInputStream(outputStream.toByteArray());
+            }
+        } catch (Exception e) {
+            App.showAlert("Error", "No se pudo procesar la imagen.", Alert.AlertType.WARNING);
+        }
+
+        boolean exito = model.insertarUsuarios(usuario, email, pass, flujoImagen);
 
         if (exito) {
-            App.showAlert("Éxito", "Usuario creado correctamente.", Alert.AlertType.INFORMATION);
             // Cerrar la ventana al terminar
             Stage stage = (Stage) btnCrear.getScene().getWindow();
             stage.close();
         }
     }
 
+    // Metodo par salirme de la aplicación si le doy a cancelar
     @FXML
-    private void abrirCamara() {
-        GestorImagen.abrirCamara(imagenPerfil, getClass());
+    private void cancelar(ActionEvent event) {
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
 
+    //Metodo para abrir la camara y echar foto
+    @FXML
+    private void abrirCamara(ActionEvent event) {
+        // Guardamos la imagen que estaba antes, que tiene que ser la de por defecto
+        Image imagenAnterior = imagenPerfil.getImage();
+        
+        //Nos metemos en el gestor para echar la foto
+        GestorImagen.abrirCamara(imagenPerfil, getClass());
+        
+        /* Si la imagen no es la misma que la del anterior ponemos los botones 
+        para que no se puedan seleccionar ninguna otra y solo borrar*/
+        if (imagenPerfil.getImage() != imagenAnterior) {
+            btnImagen.setDisable(true);
+            btnBorrarImagen.setDisable(false);
+
+        }
+    }
+
+    /* Metodo para borrar la imagen y poner otra*/
+    @FXML
+    private void borrarImagen(ActionEvent event) {
+        imagenPerfil.setImage(null);
+        btnImagen.setDisable(false);
+        btnBorrarImagen.setDisable(true);
+        ponerImagenDefecto();
+    }
+
+    /*Metodo para poner la imagen por defecto si no hay foto*/
+    private void ponerImagenDefecto() {
+        try {
+            Image imagen = new Image(getClass().getResourceAsStream("asset/image/ImagenPerfil.png"));
+            imagenPerfil.setImage(imagen);
+        } catch (Exception e) {
+            App.showAlert("Error", "No se puede encontrar la imagen.", Alert.AlertType.WARNING);
+        }
+    }
 }

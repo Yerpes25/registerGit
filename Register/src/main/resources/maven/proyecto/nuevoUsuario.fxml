@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox id="AnchorPane" fx:id="anchorPane" prefHeight="464.0" prefWidth="308.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.proyecto.NuevoUsuarioController">
+<VBox id="AnchorPane" fx:id="anchorPane" prefHeight="523.0" prefWidth="308.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="maven.proyecto.NuevoUsuarioController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -29,48 +29,57 @@
                         <Insets left="20.0" top="25.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="btnImagen" mnemonicParsing="false" onAction="#abrirCamara" prefHeight="29.0" prefWidth="125.0" text="Imagen">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="90.0" />
-                     </VBox.margin>
-                  </Button>
                </children>
             </VBox>
             <VBox prefHeight="135.0" prefWidth="201.0">
                <children>
-                  <TextField fx:id="tfNombre" promptText="Nombre de usuario" prefHeight="26.0" prefWidth="107.0" styleClass="text-field-nuevo">
+                  <TextField fx:id="tfNombre" prefHeight="26.0" prefWidth="107.0" promptText="Nombre de usuario" styleClass="text-field-nuevo">
                      <VBox.margin>
                         <Insets right="10.0" top="25.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="tfCorreo" promptText="Escribir correo con ejempl de (ejemplo@correo.com)" prefHeight="25.0" prefWidth="217.0" styleClass="text-field-nuevo">
+                  <TextField fx:id="tfCorreo" prefHeight="25.0" prefWidth="217.0" promptText="Escribir correo con ejempl de (ejemplo@correo.com)" styleClass="text-field-nuevo">
                      <VBox.margin>
                         <Insets right="10.0" top="15.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="tfContrasenia" promptText="Contraseña de mínimo 8 caracteres" prefHeight="25.0" prefWidth="217.0" styleClass="text-field-nuevo">
+                  <TextField fx:id="tfContrasenia" prefHeight="25.0" prefWidth="217.0" promptText="Contraseña de mínimo 8 caracteres" styleClass="text-field-nuevo">
                      <VBox.margin>
                         <Insets right="10.0" top="18.0" />
                      </VBox.margin>
                   </TextField>
-                  <ImageView fx:id="imagenPerfil" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </ImageView>
                </children>
             </VBox>
          </children>
       </HBox>
-      <Button fx:id="btnCrear" mnemonicParsing="false" onAction="#crearUsuario" prefHeight="38.0" prefWidth="94.0" text="Crear">
-         <VBox.margin>
-            <Insets left="100.0" top="20.0" />
-         </VBox.margin>
-      </Button>
-      <Button fx:id="btnCancelar" mnemonicParsing="false" prefHeight="38.0" prefWidth="94.0" text="Cancelar">
-         <VBox.margin>
-            <Insets bottom="10.0" left="100.0" top="10.0" />
-         </VBox.margin>
-      </Button>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <ImageView fx:id="imagenPerfil" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button fx:id="btnImagen" mnemonicParsing="false" onAction="#abrirCamara" prefHeight="29.0" prefWidth="195.0" text="Seleccionar imagen">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnBorrarImagen" mnemonicParsing="false" onAction="#borrarImagen" prefHeight="29.0" prefWidth="195.0" text="Borrar imagen">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnCrear" mnemonicParsing="false" onAction="#crearUsuario" prefHeight="38.0" prefWidth="94.0" text="Crear">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="38.0" prefWidth="94.0" text="Cancelar">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </VBox>

@@ -12,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
@@ -24,7 +23,7 @@ import maven.proyecto.CamaraController;
 
 /**
  *
- * @author Usuario
+ * @author Yerpes
  */
 public class GestorImagen {
     
@@ -50,13 +49,13 @@ public class GestorImagen {
             }
 
         } catch (Exception e) {
-            App.showAlert("Error", "No se pudo abrir la cámara: " + e.getMessage(), Alert.AlertType.ERROR);
+            App.showAlert("Error", "No se pudo abrir la cámara: ", Alert.AlertType.ERROR);
             e.printStackTrace();
         }
     }
     
-    public static void configurarDragAndDrop(ImageView imagenDestino, Button botonBloquear) {
-        // 1. Detectar arrastre
+    public static void configurarDragAndDropImagen(ImageView imagenDestino) {
+        // Detectar arrastre
         imagenDestino.setOnDragOver((DragEvent event) -> {
             if (event.getDragboard().hasFiles()) {
                 event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
@@ -64,7 +63,7 @@ public class GestorImagen {
             event.consume();
         });
 
-        // 2. Soltar archivo
+        // Soltar archivo
         imagenDestino.setOnDragDropped((DragEvent event) -> {
             boolean exito = false;
             if (event.getDragboard().hasFiles()) {
@@ -75,15 +74,9 @@ public class GestorImagen {
                         Image imagen = new Image(new FileInputStream(archivo));
                         imagenDestino.setImage(imagen);
 
-                        // Bloquear botón si se pasa (puede ser null si en alguna ventana no hay botón)
-                        if (botonBloquear != null) {
-                            botonBloquear.setDisable(true);
-                            botonBloquear.setText("Imagen Cargada");
-                        }
-
                         exito = true;
                     } catch (FileNotFoundException e) {
-                        System.out.println("Error al cargar la imagen arrastrada: " + e.getMessage());
+                        System.out.println("Error al cargar la imagen arrastrada ");
                     }
                 }
             }

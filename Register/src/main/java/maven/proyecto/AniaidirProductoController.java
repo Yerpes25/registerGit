@@ -16,14 +16,17 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import maven.model.FuncionHablar;
 import maven.model.Producto;
 import maven.model.Ubicacion;
 import maven.util.GestorEstilos;
+import maven.util.GestorHablar;
+import maven.util.GestorTactil;
 
 /**
  * FXML Controller class
  *
- * @author Usuario
+ * @author Yerpes
  */
 public class AniaidirProductoController implements Initializable {
 
@@ -44,7 +47,7 @@ public class AniaidirProductoController implements Initializable {
     private static Producto p = null;
     private ObservableList<Ubicacion> olUbi = FXCollections.observableArrayList();
     private Ubicacion modelUbi = null;
-    private Producto modelCodigo = null; 
+    private Producto modelCodigo = null;
     private ObservableList<String> olCodigo = FXCollections.observableArrayList();
     @FXML
     private VBox AnchorPane;
@@ -62,10 +65,16 @@ public class AniaidirProductoController implements Initializable {
         modelUbi = new Ubicacion();
         olUbi = modelUbi.cargarUbicacion();
         nmiUbi.setItems(olUbi);
-        
-        
+
         GestorEstilos.cargarEstilos(AnchorPane);
-        
+        GestorTactil.hacerInteractable(AnchorPane);
+        GestorHablar.ponerVozComboBox(nmiUbi);
+
+        GestorHablar.adjudicarVoces(nmiCancelar, nmiGuardar, nmiCodigo, nmiCantidad,
+                 nmiDesc);
+
+        FuncionHablar.hablar("Registro de un producto");
+
         //Lo mismo que con ubicaciones pero ahora con productos
         modelCodigo = new Producto();
         olCodigo = modelCodigo.cargarCodigoProductos();
@@ -121,14 +130,14 @@ public class AniaidirProductoController implements Initializable {
             alert.showAndWait();
             return;
         }
-        
+
         // Validar que el código no este duplicado
         if (olCodigo.contains(codigo)) {
             alert.setContentText("El código ya existe.");
             alert.showAndWait();
             return;
         }
-        
+
         // Enviamos el codigo al producto para guardarlo desde los campos de texto que nosotros hemos puesto
         // ya que habremos pasado las verificaciones, controlando que se pasen todos segun su tipo
         p = new Producto();
@@ -143,12 +152,12 @@ public class AniaidirProductoController implements Initializable {
         if (guardado) {
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "Producto añadido correctamente.");
             alert1.showAndWait();
-            cancelarProducto(); 
+            cancelarProducto();
         } else {
             Alert alert1 = new Alert(Alert.AlertType.ERROR, "Hubo un error al guardar en la base de datos.");
             alert1.showAndWait();
         }
-        
+
         // Llamamos al metodo cancelar por si no se ha cerrado antes la ventana
         cancelarProducto();
     }

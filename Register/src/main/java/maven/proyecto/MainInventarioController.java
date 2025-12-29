@@ -12,9 +12,12 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,23 +28,32 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import maven.model.FuncionHablar;
 import maven.model.Ubicacion;
 import maven.model.User;
 import maven.util.GestorEstilos;
+import maven.util.GestorHablar;
+import maven.util.GestorTactil;
 
 /**
  * FXML Controller class
@@ -119,6 +131,10 @@ public class MainInventarioController implements Initializable {
     private VBox VboxPanelDerecha;
     @FXML
     private Button btnNuevo;
+    @FXML
+    private ImageView imgPerfilUsuario;
+    @FXML
+    private CheckMenuItem cbVoz;
 
     /**
      * Initializes the controller class.
@@ -126,7 +142,7 @@ public class MainInventarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
         mActualizar.setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
         mCerrarSesion.setAccelerator(KeyCombination.keyCombination("Ctrl+L"));
         mSalir.setAccelerator(KeyCombination.keyCombination("Ctrl+Q"));
@@ -193,6 +209,57 @@ public class MainInventarioController implements Initializable {
         }
 
         GestorEstilos.cargarEstilos(anchorPane);
+        GestorTactil.hacerInteractable(anchorPane);
+
+        cbVoz.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                FuncionHablar.setVozActivada(newValue);
+
+                if (newValue) {
+                    FuncionHablar.hablar("Modo voz activado");
+                }
+            }
+        });
+
+        FuncionHablar.hablar("Gestión de inventario");
+
+        /*Le ponemos voz a lo que queremos de main inventario*/
+        GestorHablar.adjudicarVoces(btnNuevo,
+                btnEliminar,
+                btnModificar,
+                miDiagrama,
+                miCodigo,
+                miDescripcion,
+                miCantidad,
+                miUbicacion);
+
+
+        /*Metodo para decir la descripccion de los productos de la tabla*/
+        tableModel.setRowFactory(new Callback<TableView<Producto>, TableRow<Producto>>() {
+            @Override
+            public TableRow<Producto> call(TableView<Producto> tv) {
+                final TableRow<Producto> fila = new TableRow<>();
+
+                fila.setOnMouseEntered(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if (!fila.isEmpty() && FuncionHablar.estaVozActivada()) {
+                            FuncionHablar.hablar(fila.getItem().getDescripcion());
+                        }
+                    }
+                });
+
+                return fila;
+            }
+        });
+
+        /* Configuracion de la celda del combo box para que hable al pasar el raton*/
+        GestorHablar.ponerVozComboBox(miUbicacion);
+
+        // Cargamos foto de perfil del usuario
+        cargarFotoPerfil();
+
         // Actualizamos la tabla
         actualizarTabla();
 
@@ -443,25 +510,30 @@ public class MainInventarioController implements Initializable {
         return true;
     }
 
+    //Metodo para actualizar la tabla desde el menu
     @FXML
     public void menuActualizar(ActionEvent event) {
         actualizarTabla();
     }
 
+    // Metodo para cargar los datos de la tabla desde el menú
     @FXML
     public void menuCargarDatos(ActionEvent event) {
         ol = model.cargarDatos();
     }
 
+    // Metodo para salir de la aplicación desde el menú
     @FXML
     public void menuSalir(ActionEvent event) {
         Platform.exit();
     }
 
+    //Metodo para mostrar la pantalla del diagrama desde el menú
     public void menuGrafico(ActionEvent event) {
         mostrarDiagrama(event);
     }
 
+    //Metodo para cerrar sesión desde el menú
     @FXML
     private void cerrarSesion(ActionEvent event) {
         try {
@@ -471,30 +543,55 @@ public class MainInventarioController implements Initializable {
         }
     }
 
+    //Metodo para poner el modo oscuro a la aplicación
     @FXML
     private void modoOscuro(ActionEvent event) {
         GestorEstilos.setModoOscuro(true, anchorPane);
     }
 
+    //Metodo para poner el modo claro a la aplicación
     @FXML
     private void modoClaro(ActionEvent event) {
         GestorEstilos.setModoOscuro(false, anchorPane);
     }
 
+    // Metodo para aumentar la fuente del texto
     @FXML
     private void aumentarFuente(ActionEvent event) {
         GestorEstilos.aumentarFuente(anchorPane);
     }
 
+    //Metodo para disminuir la fuente del texto
     @FXML
     private void disminuirFuente(ActionEvent event) {
         GestorEstilos.disminuirFuente(anchorPane);
     }
 
+    //Metodo para reproducir sonido de error o exito
     @FXML
     private void reproducirSonido(ActionEvent event) {
         if (mSonido != null) {
             maven.model.Configuracion.sonidoActivo = mSonido.isSelected();
         }
     }
+
+    //Metodo para cargar la foto del usuario
+    private void cargarFotoPerfil() {
+        // Obtenemos el usuario actual
+        String usuario = User.getUsuarioActual();
+
+        if (usuario != null) {
+            Image foto = model1.obtenerFoto(usuario);
+
+            if (foto != null) {
+                imgPerfilUsuario.setImage(foto);
+
+                // Recortar en círculo para que quede mejor
+                double radio = imgPerfilUsuario.getFitWidth() / 2;
+                Circle clip = new Circle(radio, radio, radio);
+                imgPerfilUsuario.setClip(clip);
+            }
+        }
+    }
+
 }

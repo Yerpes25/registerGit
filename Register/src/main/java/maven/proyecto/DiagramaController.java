@@ -16,8 +16,11 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.VBox;
+import maven.model.FuncionHablar;
 import maven.model.Producto;
 import maven.util.GestorEstilos;
+import maven.util.GestorHablar;
+import maven.util.GestorTactil;
 
 /**
  * FXML Controller class
@@ -35,9 +38,9 @@ public class DiagramaController implements Initializable {
     private CategoryAxis ejeX;
     @FXML
     private ColorPicker colorPicker;
-    
-     XYChart.Series<String, Integer> series = new XYChart.Series<>();
-    
+
+    XYChart.Series<String, Integer> series = new XYChart.Series<>();
+
     // Creamos un nuevo producto llamado model
     private Producto model;
     @FXML
@@ -51,28 +54,33 @@ public class DiagramaController implements Initializable {
         // TODO
         // Inicializamos model con el constructor y llamamos al metodo cargarDatosGrafico
         model = new Producto();
-        
+
         GestorEstilos.cargarEstilos(anchorPane);
+        GestorTactil.hacerInteractable(anchorPane);
+        GestorHablar.adjudicarVoces(colorPicker);
+
+        FuncionHablar.hablar("Diagrama de los productos");
+
         cargarDatosGrafico();
-    }    
+    }
 
     // Metodo para cargar los datos de la base de datos a la grafica 
     private void cargarDatosGrafico() {
         //Metemos en una lista todos los datos de la base de datos
         ObservableList<Producto> listaProductos = model.cargarDatos();
-        
+
         // Recorre la lista y añade series añadiendo el codigo como x y la cantidad como y
-        for(Producto p : listaProductos){
+        for (Producto p : listaProductos) {
             series.getData().add(new XYChart.Data<>(p.getCodigo(), p.getCantidad()));
         }
-        tablaGrafico.getData().add(series) ;
+        tablaGrafico.getData().add(series);
     }
-    
+
     @FXML
-    public void cambiarColor(ActionEvent event){
-        String color = "#" + colorPicker.getValue().toString().substring(2,8);
-        
-        for(XYChart.Data<String, Integer> dato : series.getData()){
+    public void cambiarColor(ActionEvent event) {
+        String color = "#" + colorPicker.getValue().toString().substring(2, 8);
+
+        for (XYChart.Data<String, Integer> dato : series.getData()) {
             dato.getNode().setStyle("-fx-bar-fill: " + color + ";");
         }
     }

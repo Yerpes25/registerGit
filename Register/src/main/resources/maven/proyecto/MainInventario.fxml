@@ -31,7 +31,10 @@
                     <MenuItem fx:id="mActualizar" mnemonicParsing="false" onAction="#menuActualizar" text="Refrescar datos" />
                         <MenuItem fx:id="mCargarDatos" mnemonicParsing="false" onAction="#menuCargarDatos" text="Cargar datos" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="mCerrarSesion" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesion" />
+                        <MenuItem fx:id="mCerrarSesion" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesion">
+                     <graphic>
+                        <ImageView fx:id="imgPerfilUsuario" fitHeight="30.0" fitWidth="30.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
+                     </graphic></MenuItem>
                         <MenuItem fx:id="mSalir" mnemonicParsing="false" onAction="#menuSalir" text="Salir" />
                   </items>
                 </Menu>
@@ -53,6 +56,7 @@
                           </items>
                         </Menu>
                         <CheckMenuItem fx:id="mSonido" mnemonicParsing="false" onAction="#reproducirSonido" text="Activar sonido" />
+                  <CheckMenuItem fx:id="cbVoz" mnemonicParsing="false" text="Activar voz" />
                   </items>
                 </Menu>
               </menus>
@@ -109,7 +113,7 @@
                               </VBox>
                               <VBox prefHeight="264.0" prefWidth="366.0" stylesheets="@styles.css">
                                  <children>
-                                    <TextField fx:id="miCodigo" styleClass="input-general-Main">
+                                    <TextField fx:id="miCodigo" promptText="Codigo del producto" styleClass="input-general-Main">
                                        <VBox.margin>
                                           <Insets bottom="8.0" left="10.0" right="10.0" top="30.0" />
                                        </VBox.margin>
@@ -117,7 +121,7 @@
                                           <Tooltip text="Pon el codigo del producto" />
                                        </tooltip>
                                     </TextField>
-                                    <TextField fx:id="miDescripcion" styleClass="input-general-Main">
+                                    <TextField fx:id="miDescripcion" promptText="Descripccion del producto" styleClass="input-general-Main">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
@@ -125,7 +129,7 @@
                                           <Tooltip text="Pon la descripción del producto" />
                                        </tooltip>
                                     </TextField>
-                                    <TextField fx:id="miCantidad" styleClass="input-general-Main">
+                                    <TextField fx:id="miCantidad" promptText="Cantidad del producto" styleClass="input-general-Main">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="8.0" />
                                        </VBox.margin>
@@ -133,7 +137,7 @@
                                           <Tooltip text="Pon la cantidad del producto" />
                                        </tooltip>
                                     </TextField>
-                                    <ComboBox fx:id="miUbicacion" prefHeight="25.0" prefWidth="389.0">
+                                    <ComboBox fx:id="miUbicacion" prefHeight="25.0" prefWidth="389.0" promptText="Ubicacion del producto">
                                        <VBox.margin>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </VBox.margin>
@@ -185,12 +189,12 @@
                      <VBox.margin>
                         <Insets left="55.0" top="20.0" />
                      </VBox.margin></Button>
-                        <Button fx:id="miDiagrama" mnemonicParsing="false" onAction="#mostrarDiagrama" prefHeight="54.0" prefWidth="63.0">
+                        <Button fx:id="miDiagrama" mnemonicParsing="false" onAction="#mostrarDiagrama" prefHeight="54.0" prefWidth="202.0" text="Diagrama">
                            <tooltip>
                               <Tooltip text="Mostrar un diagrama" />
                            </tooltip>
                      <VBox.margin>
-                        <Insets left="125.0" top="20.0" />
+                        <Insets left="55.0" top="20.0" />
                      </VBox.margin></Button>
                </children>
             </VBox>

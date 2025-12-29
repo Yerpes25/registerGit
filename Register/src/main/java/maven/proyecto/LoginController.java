@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +40,8 @@ import javafx.stage.Stage;
 import maven.model.FuncionHablar;
 import maven.model.User;
 import maven.util.GestorEstilos;
+import maven.util.GestorHablar;
+import maven.util.GestorTactil;
 
 //import java.net.URL;
 //import javafx.scene.image.Image;
@@ -102,16 +106,22 @@ public class LoginController {
         }
 
         GestorEstilos.cargarEstilos(vboxPane);
-        
-        cbVoz.setSelected(FuncionHablar.estaVozActivada());
-        
-        cbVoz.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            FuncionHablar.setVozActivada(newValue);
-            
-            if(newValue) {
-                FuncionHablar.hablar("Modo voz activado");
+        GestorTactil.hacerInteractable(vboxPane);
+
+        cbVoz.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                FuncionHablar.setVozActivada(newValue);
+
+                if (newValue) {
+                    FuncionHablar.hablar("Modo voz activado");
+                }
             }
         });
+
+        FuncionHablar.hablar("Login de usuario");
+
+        GestorHablar.adjudicarVoces(jbLogin, jpfPassword, jtfUser, btnRegistrar);
     }
 
     @FXML

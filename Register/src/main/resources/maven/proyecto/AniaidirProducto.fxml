@@ -39,19 +39,19 @@
               </VBox>
               <VBox prefHeight="100.0" prefWidth="200.0">
                   <children>
-                      <TextField fx:id="nmiCodigo" styleClass="text-field-nuevo">
+                      <TextField fx:id="nmiCodigo" promptText="Codigo del producto" styleClass="text-field-nuevo">
                      <VBox.margin>
                         <Insets right="10.0" top="35.0" />
                      </VBox.margin></TextField>
-                      <TextField fx:id="nmiDesc" styleClass="text-field-nuevo">
+                      <TextField fx:id="nmiDesc" promptText="Cantidad del producto" styleClass="text-field-nuevo">
                      <VBox.margin>
                         <Insets right="10.0" top="12.0" />
                      </VBox.margin></TextField>
-                      <TextField fx:id="nmiCantidad" styleClass="text-field-nuevo">
+                      <TextField fx:id="nmiCantidad" promptText="Descripcion del producto" styleClass="text-field-nuevo">
                      <VBox.margin>
                         <Insets right="10.0" top="12.0" />
                      </VBox.margin></TextField>
-                      <ComboBox fx:id="nmiUbi" prefHeight="26.0" prefWidth="157.0" styleClass=".combo-box">
+                      <ComboBox fx:id="nmiUbi" prefHeight="26.0" prefWidth="157.0" promptText="Ubicacion " styleClass=".combo-box">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin></ComboBox>

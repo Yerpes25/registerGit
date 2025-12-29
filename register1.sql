@@ -16,13 +16,14 @@ CREATE TABLE `user` (
   `password` longblob NOT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `active` tinyint(1) DEFAULT NULL,
+  `foto` LONGBLOB DEFAULT NULL,
   PRIMARY KEY (`email`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
 );
 
-INSERT INTO `user` (`email`, `username`, `password`, `active`) VALUES
-('admin@empresa.com', 'admin', 0xc91d0f919f23f1d56157b94ba87db805, 1);
+INSERT INTO `user` (`email`, `username`, `password`, `active`, `foto`) VALUES
+('admin@empresa.com', 'admin', 0xc91d0f919f23f1d56157b94ba87db805, 1, NULL);
 
 --
 -- Estructura de tabla para la tabla `ubicacion`
