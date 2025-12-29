@@ -61,7 +61,7 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="jtfUser" prefHeight="32.0" prefWidth="379.0" styleClass="input-general">
+                  <TextField fx:id="jtfUser" prefHeight="32.0" prefWidth="379.0" promptText="Nombre de usuario" styleClass="input-general">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
@@ -71,7 +71,7 @@
                         <Insets bottom="5.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <PasswordField fx:id="jpfPassword" prefHeight="36.0" prefWidth="379.0" styleClass="input-general">
+                  <PasswordField fx:id="jpfPassword" prefHeight="36.0" prefWidth="379.0" promptText="Contraseña" styleClass="input-general">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
