@@ -43,11 +43,11 @@
                      <VBox.margin>
                         <Insets right="10.0" top="35.0" />
                      </VBox.margin></TextField>
-                      <TextField fx:id="nmiDesc" promptText="Cantidad del producto" styleClass="text-field-nuevo">
+                      <TextField fx:id="nmiCantidad" promptText="Cantidad del producto" styleClass="text-field-nuevo">
                      <VBox.margin>
                         <Insets right="10.0" top="12.0" />
                      </VBox.margin></TextField>
-                      <TextField fx:id="nmiCantidad" promptText="Descripcion del producto" styleClass="text-field-nuevo">
+                      <TextField fx:id="nmiDesc" promptText="Descripcion del producto" styleClass="text-field-nuevo">
                      <VBox.margin>
                         <Insets right="10.0" top="12.0" />
                      </VBox.margin></TextField>

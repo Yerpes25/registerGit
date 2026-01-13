@@ -7,6 +7,7 @@ module maven.proyecto {
     requires java.desktop; 
     requires javafx.swing;
     requires webcam.capture;
+    requires jasperreports;
 
     opens maven.proyecto to javafx.fxml;
     opens maven.model to javafx.base;

@@ -180,21 +180,29 @@
                               <Tooltip text="Elimina un producto" />
                            </tooltip>
                      <VBox.margin>
-                        <Insets left="55.0" top="20.0" />
+                        <Insets left="55.0" top="15.0" />
                      </VBox.margin></Button>
                         <Button fx:id="btnModificar" mnemonicParsing="false" onAction="#btnModificar" prefHeight="37.0" prefWidth="202.0" styleClass="icon-boton-modificar" text="Modificar">
                            <tooltip>
                               <Tooltip text="Modifica un producto" />
                            </tooltip>
                      <VBox.margin>
-                        <Insets left="55.0" top="20.0" />
+                        <Insets left="55.0" top="15.0" />
                      </VBox.margin></Button>
+                  <Button fx:id="btnInforme" mnemonicParsing="false" onAction="#sacarInforme" prefHeight="37.0" prefWidth="202.0" text="Informe">
+                     <tooltip>
+                        <Tooltip text="Modifica un producto" />
+                     </tooltip>
+                     <VBox.margin>
+                        <Insets left="55.0" top="15.0" />
+                     </VBox.margin>
+                  </Button>
                         <Button fx:id="miDiagrama" mnemonicParsing="false" onAction="#mostrarDiagrama" prefHeight="54.0" prefWidth="202.0" text="Diagrama">
                            <tooltip>
                               <Tooltip text="Mostrar un diagrama" />
                            </tooltip>
                      <VBox.margin>
-                        <Insets left="55.0" top="20.0" />
+                        <Insets left="55.0" top="15.0" />
                      </VBox.margin></Button>
                </children>
             </VBox>

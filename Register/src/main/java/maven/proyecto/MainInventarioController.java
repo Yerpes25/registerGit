@@ -5,9 +5,14 @@
 package maven.proyecto;
 
 import java.io.IOException;
+import java.io.InputStream;
 import maven.model.Producto;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,8 +33,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -48,12 +51,19 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import maven.model.Conection;
 import maven.model.FuncionHablar;
 import maven.model.Ubicacion;
 import maven.model.User;
 import maven.util.GestorEstilos;
 import maven.util.GestorHablar;
 import maven.util.GestorTactil;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  * FXML Controller class
@@ -135,6 +145,8 @@ public class MainInventarioController implements Initializable {
     private ImageView imgPerfilUsuario;
     @FXML
     private CheckMenuItem cbVoz;
+    @FXML
+    private Button btnInforme;
 
     /**
      * Initializes the controller class.
@@ -594,4 +606,38 @@ public class MainInventarioController implements Initializable {
         }
     }
 
+    @FXML
+private void sacarInforme(ActionEvent event) throws SQLException {
+    try {
+        Connection connection = Conection.getConnection();
+        if (connection == null) {
+            App.showAlert("Error", "Sin conexión a la BD", Alert.AlertType.ERROR);
+            return;
+        }
+
+        String rutaInforme = "/maven/proyecto/asset/informes/Informe.jrxml"; 
+        InputStream reporteStream = getClass().getResourceAsStream(rutaInforme);
+        
+        String rutaImagen = "/maven/proyecto/asset/image/Logo3.jpg"; 
+        InputStream logoStream = getClass().getResourceAsStream(rutaImagen);
+
+        if (reporteStream == null || logoStream == null) {
+            System.out.println("Error: No se encuentra el reporte o la imagen.");
+            App.showAlert("Error", "Faltan archivos de recursos", Alert.AlertType.ERROR);
+            return;
+        }
+
+        JasperReport report = JasperCompileManager.compileReport(reporteStream);
+
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("logoImagen", logoStream);
+
+        JasperPrint print = JasperFillManager.fillReport(report, parametros, connection);
+        JasperViewer.viewReport(print, false);
+
+    } catch (JRException e) {
+        e.printStackTrace();
+        App.showAlert("Error Jasper", e.getMessage(), Alert.AlertType.ERROR);
+    }
+}
 }
